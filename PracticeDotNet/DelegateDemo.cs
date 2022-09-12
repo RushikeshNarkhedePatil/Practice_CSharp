@@ -24,7 +24,7 @@ namespace PracticeDotNet
         public void subtract(int a, int b)
         {
             //Console.WriteLine("(100 - 60) = {0}", a - b);
-            Console.WriteLine("(" + a + " - " + b + ")" + "= {0}", a - b);
+            Console.WriteLine("(" + a + " - " + b + ")" + "= {0}\n", a - b);
         }
     }
 }
