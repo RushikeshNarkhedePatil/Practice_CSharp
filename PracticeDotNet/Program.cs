@@ -43,6 +43,19 @@ namespace PracticeDotNet
             StaticConstructer sobj1 = new StaticConstructer(2);
 
             Console.WriteLine(sobj1.Person_detail("Kunal", 2));
+
+            // TryParse method. this method use for conversion. return true or false.
+            Console.WriteLine("\nInside TryParse() Method.");
+            TryParseDemo Tobj = new TryParseDemo();
+
+            //static class 
+            // Calling static method of Author
+            Console.WriteLine("\nStatic Method");
+            StaticClass.details();
+            // Accessing the static data members of Author
+            Console.WriteLine("Author name : {0} ", StaticClass.A_name);
+            Console.WriteLine("Language : {0} ", StaticClass.L_name);
+            Console.WriteLine("Total number of articles : {0} ",StaticClass.T_no);
         }
     }
 }
