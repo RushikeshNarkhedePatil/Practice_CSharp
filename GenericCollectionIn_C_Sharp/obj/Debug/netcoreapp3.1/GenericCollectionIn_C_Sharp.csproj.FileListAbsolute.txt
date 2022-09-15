@@ -1,0 +1,14 @@
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.exe
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.deps.json
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.runtimeconfig.json
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.runtimeconfig.dev.json
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.dll
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\bin\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.pdb
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.AssemblyInfoInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.AssemblyInfo.cs
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.dll
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.pdb
+C:\Users\varad\source\repos\PracticeDotNet\GenericCollectionIn_C_Sharp\obj\Debug\netcoreapp3.1\GenericCollectionIn_C_Sharp.genruntimeconfig.cache

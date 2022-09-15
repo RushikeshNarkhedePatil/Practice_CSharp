@@ -1,0 +1,14 @@
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.exe
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.deps.json
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.runtimeconfig.json
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.runtimeconfig.dev.json
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.dll
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\bin\Debug\netcoreapp3.1\FinalizeExample.pdb
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.AssemblyInfoInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.AssemblyInfo.cs
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.dll
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.pdb
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.genruntimeconfig.cache
+C:\Users\varad\source\repos\PracticeDotNet\FinalizeExample\obj\Debug\netcoreapp3.1\FinalizeExample.csproj.AssemblyReference.cache

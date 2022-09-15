@@ -16,9 +16,8 @@ namespace MultiThreading
                     Console.WriteLine("Inside Fun : " + i);
                 }
             }
-            catch (ThreadAbortException e)
+            catch (Exception e)
             {
-                Console.WriteLine("Thread - caught ThreadAbortException - resetting.");
                 Console.WriteLine("Exception message: {0}", e.Message);
                 Thread.ResetAbort();
             }

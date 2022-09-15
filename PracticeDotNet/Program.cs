@@ -56,6 +56,11 @@ namespace PracticeDotNet
             Console.WriteLine("Author name : {0} ", StaticClass.A_name);
             Console.WriteLine("Language : {0} ", StaticClass.L_name);
             Console.WriteLine("Total number of articles : {0} ",StaticClass.T_no);
+
+            //Finalize Example
+            Console.WriteLine("\nInside Finalize Demo");
+            FinalizeExample fobj = new FinalizeExample();
+            fobj.ShowDurartion();
         }
     }
 }

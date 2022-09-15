@@ -41,10 +41,42 @@ namespace MultiThreading
             Thread athr = new Thread(new ThreadStart(aboj.Fun));
             Thread athr1 = new Thread(new ThreadStart(aboj.Gun));
             athr.Start();
-            thr.Abort();
+            //thr.Abort();
             //thr.Join();
-            //athr1.Start();
+            athr1.Start();
 
+            //Thread State.
+            ThreadStatesExample tobj = new ThreadStatesExample();
+
+            // Creating and initializing
+            // threads Unstarted state
+            Thread Thr = new Thread(new ThreadStart(tobj.Thread));
+            Console.WriteLine("Thread State : {0} ", Thr.ThreadState);
+            // Running state
+            Thr.Start();
+            Console.WriteLine("Thread State : {0} ", Thr.ThreadState);
+            try
+            {
+                // Thr is in suspended state
+                Thr.Suspend();
+                Console.WriteLine("Thread State : {0} ", Thr.ThreadState);
+                // Thr is resume to running state
+                Thr.Resume();
+                Console.WriteLine("Thread State : {0} ", Thr.ThreadState);
+            }
+            catch (PlatformNotSupportedException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            // C# program to illustrate the
+            // use of Start(Object) method
+            StartObjectMethod Oobj = new StartObjectMethod();
+            // Creating and initializing threads
+            Thread Othr = new Thread(Oobj.Job1);
+            Thread Othr1 = new Thread(StartObjectMethod.Job2);
+            Othr.Start(01);
+            Othr1.Start("Hello");
 
         }
     }
