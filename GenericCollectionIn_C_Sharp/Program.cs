@@ -6,9 +6,24 @@ namespace GenericCollectionIn_C_Sharp
     {
         static void Main(string[] args)
         {
-            // List Example
-            ListExample lObj = new ListExample();
-            ReadOnlyList rObj = new ReadOnlyList();
+            int choice = 0;
+      
+            // Inside Main 
+            Console.WriteLine("Operation On Generic Collection in c#");
+             Console.WriteLine("1. Operation on List");
+             choice = Convert.ToInt32(Console.ReadLine());
+            // create class object
+            
+            switch (choice)
+             {
+                 case 1:
+                    ListExample lobj = new ListExample();
+                    break;
+                 default:
+                     break;
+             }
+            
+
         }
     }
 }
