@@ -6,13 +6,24 @@ namespace GenericCollectionIn_C_Sharp
 {
     public class ListExample
     {
+        //check Even or not
+        private static bool isEven(int i)
+        {
+            return ((i % 2) == 0);
+        }
+
+        // display method
+        static void display(string str)
+        {
+            Console.WriteLine(str);
+        }
         public ListExample()
         {
             //ListExample.ListExampleDemo();
             int choice = 0;
             Console.WriteLine("Operation on List : Select your Choice");
             Console.WriteLine("1. Example Of List\n2. Read only List Example\n3. List sort and binary Search" +
-              "\n4. Clear\n5. List Contains\n6. ListCopy");
+              "\n4. Clear\n5. List Contains\n6. ListCopy\n7. ListEquals\n8. ListExits\n9. ListFind\n10. ListFindLastIndex\n11. ListForeach\n");
             choice = Convert.ToInt32(Console.ReadLine()); //convert string to integer
 
             switch (choice)
@@ -34,6 +45,21 @@ namespace GenericCollectionIn_C_Sharp
                     break;
                 case 6:
                     ListExample.ListCopy();
+                    break;
+                case 7:
+                    ListExample.ListObjectEquals();
+                    break;
+                case 8:
+                    ListExample.ListExists();
+                    break;
+                case 9:
+                    ListExample.ListFindPredicate();
+                    break;
+                case 10:
+                    ListExample.ListFindLastIndex();
+                    break;
+                case 11:
+                    ListExample.ListForeach();
                     break;
                 default:
                     Console.WriteLine("Invalid Choice");
@@ -240,6 +266,136 @@ namespace GenericCollectionIn_C_Sharp
             {
                 Console.WriteLine(k);
             }
+        }
+        static void ListObjectEquals()
+        {
+            // Creating a List of strings
+            List<string> list1 = new List<string>();
+
+            // Inserting elements in List
+            list1.Add("DS");
+            list1.Add("C++");
+            list1.Add("Java");
+            list1.Add("JavaScript");
+            //print list1 data
+            Console.WriteLine("Print List1 Data : ");
+            foreach (var k in list1)
+            {
+                Console.WriteLine(k);
+            }
+
+            // Creating an List<T> of Integers
+            List<int> list2 = new List<int>();
+
+            // Adding elements to List
+            list2.Add(78);
+            list2.Add(44);
+            list2.Add(27);
+            list2.Add(98);
+            list2.Add(74);
+
+            //print list2 data
+            Console.WriteLine("Print List2 Data : ");
+            foreach (var k in list2)
+            {
+                Console.WriteLine(k);
+            }
+            // Checking whether list1 is equal to list2 or not
+            Console.WriteLine("List1 is equal to list2 or not : "+list1.Equals(list2));
+
+            // Creating a List of integers
+            List<int> list3 = new List<int>();
+
+            // Assigning list2 to list3
+            Console.WriteLine("Assigning list2 to list3");
+            list3 = list2;
+
+            // Checking whether list3 is
+            // equal to list2 or not
+            Console.WriteLine("List3 is equal to list2 or not : " + list3.Equals(list2));
+        }
+        static void ListExists()    // check specific condision match or not. return true or false.
+        {
+            List<int> list = new List<int>();
+            // Adding elements to List
+            for(int i=1;i<=10;i++)
+            {
+                list.Add(i);
+            }
+            //present element in list
+            Console.WriteLine("Present Element in List : ");
+            foreach (var k in list)
+            {
+                Console.WriteLine(k);
+            }
+            Console.Write("Result: ");
+            // Check the elements of firstlist that
+            // match the conditions defined by predicate
+            Console.WriteLine(list.Exists(isEven));
+        }
+        static void ListFindPredicate()
+        {
+            List<int> list = new List<int>();
+            Console.WriteLine("Use Find Method");
+            // Adding elements to List
+            for (int i = 1; i <= 10; i++)
+            {
+                list.Add(i);
+            }
+            //present element in list
+            Console.WriteLine("Present Element in List : ");
+            foreach (var k in list)
+            {
+                Console.WriteLine(k);
+            }
+            Console.Write("Result: ");
+            // Check the elements of firstlist that
+            // match the conditions defined by predicate
+            Console.WriteLine(list.Find(isEven));   // check condision and return first match occurence.
+        }
+        static void ListFindLastIndex()
+        {
+            // Creating an List<T> of Integers
+            List<int> list = new List<int>();
+            // Adding elements to List
+            list.Add(4);
+            list.Add(2);
+            list.Add(7);
+            list.Add(2);
+            list.Add(6);
+            list.Add(4);
+            list.Add(3);
+            Console.WriteLine("Elements Present in List:\n");
+            int p = 0;
+
+            // Displaying the elements of List
+            foreach (int k in list)
+            {
+                Console.Write("At Position {0}: ", p);
+                Console.WriteLine(k);
+                p++;
+            }
+            // Will give the last occurrence of the
+            // element of list that match the
+            // conditions defined by predicate
+            Console.Write("Index of Last element that fulfill the conditions: ");
+            Console.WriteLine(list.LastIndexOf(list.FindLast(isEven)));
+            Console.Write("Element is: ");
+            Console.Write((list.FindLast(isEven)));
+        }
+        static void ListForeach()
+        {
+            List<string> list = new List<string>();
+            list.Add("C");
+            list.Add("C++");
+            list.Add("Java");
+            list.Add("Python");
+            list.Add("C#");
+            list.Add("Objective C");
+            list.Add("Swift");
+            list.Add("go Lang");
+            list.ForEach(display);
+
         }
     }
 }
