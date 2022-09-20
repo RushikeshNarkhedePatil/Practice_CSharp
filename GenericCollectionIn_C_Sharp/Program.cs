@@ -10,7 +10,7 @@ namespace GenericCollectionIn_C_Sharp
       
             // Inside Main 
             Console.WriteLine("Operation On Generic Collection in c#");
-             Console.WriteLine("1. Operation on List\n2. Operation on LinkedList");
+             Console.WriteLine("1. Operation on List\n2. Operation on LinkedList\n3. HashSet");
              choice = Convert.ToInt32(Console.ReadLine());
             // create class object
             
@@ -21,6 +21,9 @@ namespace GenericCollectionIn_C_Sharp
                     break;
                 case 2:
                     LinkedListEx linkedList = new LinkedListEx();
+                    break;
+                case 3:
+                    HashSet hObj = new HashSet();
                     break;
                  default:
                      break;
