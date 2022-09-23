@@ -1,0 +1,14 @@
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.exe
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.deps.json
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.runtimeconfig.json
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.runtimeconfig.dev.json
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.dll
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\bin\Debug\netcoreapp3.1\NonGeneric Collection.pdb
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.AssemblyInfoInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.AssemblyInfo.cs
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.dll
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.pdb
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.genruntimeconfig.cache
+C:\Users\varad\source\repos\PracticeDotNet\NonGeneric Collection\obj\Debug\netcoreapp3.1\NonGeneric Collection.csproj.AssemblyReference.cache

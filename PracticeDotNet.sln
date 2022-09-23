@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading", "MultiThre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericCollectionIn_C_Sharp", "GenericCollectionIn_C_Sharp\GenericCollectionIn_C_Sharp.csproj", "{4E37DD44-911B-45A2-BDA7-F5CED62DB120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectPractice", "ProjectPractice\ProjectPractice.csproj", "{B80A0482-A03E-4724-A87B-1B4765468ED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectPractice", "ProjectPractice\ProjectPractice.csproj", "{B80A0482-A03E-4724-A87B-1B4765468ED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonGeneric Collection", "NonGeneric Collection\NonGeneric Collection.csproj", "{D847D944-564E-4BE2-96CF-719A53BDE881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{B80A0482-A03E-4724-A87B-1B4765468ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B80A0482-A03E-4724-A87B-1B4765468ED0}.Release|x64.ActiveCfg = Release|Any CPU
 		{B80A0482-A03E-4724-A87B-1B4765468ED0}.Release|x64.Build.0 = Release|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Debug|x64.Build.0 = Debug|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Release|x64.ActiveCfg = Release|Any CPU
+		{D847D944-564E-4BE2-96CF-719A53BDE881}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
