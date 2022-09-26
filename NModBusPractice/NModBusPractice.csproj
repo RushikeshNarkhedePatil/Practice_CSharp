@@ -6,4 +6,14 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NModbus4">
+      <HintPath>..\lib\NModbus4.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

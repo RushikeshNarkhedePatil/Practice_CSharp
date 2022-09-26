@@ -9,47 +9,29 @@ namespace NModBusDemo
 {
     class Program
     {
+        private static object master;
 
         static void Main(string[] args)
         {
 
-            //// NModBus Demo
-            //SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
-            //serialPort.PortName = "COM1";
-            //serialPort.BaudRate = 115200;
-            //serialPort.DataBits = 8;
-            //serialPort.Parity = Parity.None;
-            //serialPort.StopBits = StopBits.One;
-            //serialPort.Open();
-            //ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
-            // NModBus Demo
-            SerialPort port = new SerialPort("COM1");
+            SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+            serialPort.PortName = "COM4";
+            serialPort.BaudRate = 9600;
+            serialPort.DataBits = 8;
+            serialPort.Parity = Parity.None;
+            serialPort.StopBits = StopBits.One;
+            serialPort.Open();
+            ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+            //var data= master.ReadInputs(10, 7999, 4);    // read inputs
+            bool[] data = { false, false, false, false };      // multiple file read karaychya asalyas tyala bool array of data pass karava lagto. true : on false : off
+            //master.WriteSingleCoil(10, 3999,false);     // write single coil
+            master.WriteMultipleCoils(10, 3999, data);
+       
+            //foreach (var item in data)      // read data
+            //{
+            //    Console.WriteLine(item);    // dispaly data item
+            //}
 
-            // configure serial port
-            port.BaudRate = 9600;
-            port.DataBits = 8;
-            port.Parity = Parity.None;
-            port.StopBits = StopBits.One;
-            port.Open();
-
-            // create modbus master
-            IModbusSerialMaster master = ModbusSerialMaster.CreateRtu(port);
-
-            byte slaveId = 1;
-            ushort startAddress = 1;
-            ushort numRegisters = 4;
-
-            // read five registers
-            ushort[] registers = master.ReadHoldingRegisters(slaveId, startAddress, numRegisters);
-
-            for (int i = 0; i < numRegisters; i++)
-                Console.WriteLine("Register {0}={1}", startAddress + i, registers[i]);
-
-           slaveId = 1;
-           startAddress = 1;
-
-            // write three coils
-            master.WriteMultipleCoils(slaveId, startAddress, new bool[] { true, false, true });
 
         }
     }
