@@ -116,11 +116,12 @@ namespace GUI_ModBus
                 SlaveId = Convert.ToByte(txtWriteMultiId.Text);
                 Address = Convert.ToUInt16(txtMultiAddress.Text);
                 // WriteCoil = Convert.ToBoolean(txtWriteData.Text);
-                foreach (bool item in listView3.Items)
-                {
-                    //WriteMultiCoil = item.ToString();
-                }
-                master.WriteSingleCoil(SlaveId, Address,Convert.ToBoolean(WriteMultiCoil));        // write data
+                //WriteMultiCoil = item.ToString();
+                //foreach (bool item in listView3.Items)
+                //{
+                //    //WriteMultiCoil = item.ToString();
+                //}
+                master.WriteMultipleCoils(SlaveId, Address,WriteMultiCoil);        // write data
                 listView2.Items.Add(WriteCoil.ToString());
                 progressBar3.Value = 100;
             }
