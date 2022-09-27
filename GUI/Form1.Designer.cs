@@ -29,21 +29,27 @@ namespace GUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.txtbox1 = new System.Windows.Forms.TextBox();
             this.btnRead = new System.Windows.Forms.Button();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DataSource = this.programBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(545, 109);
+            this.dataGridView1.Size = new System.Drawing.Size(544, 169);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnOpen
             // 
@@ -67,7 +73,7 @@ namespace GUI
             // 
             // txtbox1
             // 
-            this.txtbox1.Location = new System.Drawing.Point(12, 140);
+            this.txtbox1.Location = new System.Drawing.Point(10, 187);
             this.txtbox1.Multiline = true;
             this.txtbox1.Name = "txtbox1";
             this.txtbox1.Size = new System.Drawing.Size(181, 102);
@@ -84,6 +90,10 @@ namespace GUI
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click_1);
             // 
+            // programBindingSource
+            // 
+            this.programBindingSource.DataSource = typeof(GUI.Program);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,6 +107,7 @@ namespace GUI
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,6 +120,7 @@ namespace GUI
         private System.Windows.Forms.Button btnWrite;
         private System.Windows.Forms.TextBox txtbox1;
         private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.BindingSource programBindingSource;
     }
 }
 

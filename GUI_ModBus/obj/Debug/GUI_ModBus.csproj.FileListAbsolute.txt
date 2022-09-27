@@ -1,0 +1,12 @@
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\bin\Debug\GUI_ModBus.exe.config
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\bin\Debug\GUI_ModBus.exe
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\bin\Debug\GUI_ModBus.pdb
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\bin\Debug\NModbus4.dll
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.Form1.resources
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.Properties.Resources.resources
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.csproj.GenerateResource.cache
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.csproj.CopyComplete
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.exe
+C:\Users\varad\source\repos\PracticeDotNet\GUI_ModBus\obj\Debug\GUI_ModBus.pdb

@@ -21,12 +21,15 @@ namespace NModBusDemo
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
             serialPort.Open();
+            if(!serialPort.IsOpen)
+            {
+                serialPort.Close();
+            }
             ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
             //var data= master.ReadInputs(10, 7999, 4);    // read inputs
-            bool[] data = { false, false, false, false };      // multiple file read karaychya asalyas tyala bool array of data pass karava lagto. true : on false : off
+            //bool[] data = { true, false, true, true };      // multiple file read karaychya asalyas tyala bool array of data pass karava lagto. true : on false : off
             //master.WriteSingleCoil(10, 3999,false);     // write single coil
-            master.WriteMultipleCoils(10, 3999, data);
-       
+            //master.WriteMultipleCoils(10, 3999, data);
             //foreach (var item in data)      // read data
             //{
             //    Console.WriteLine(item);    // dispaly data item

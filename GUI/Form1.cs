@@ -17,7 +17,6 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         private void btnOpen_Click(object sender, EventArgs e)
         {
             try
@@ -58,7 +57,8 @@ namespace GUI
                 foreach (var item in data)
                 {
                     //dataGridView1.DataSource = item;
-                    //txtbox1.Text = item.ToString();
+                    
+                    txtbox1.Text = item.ToString();
                     Console.WriteLine(item);
                 }
             }
@@ -89,6 +89,20 @@ namespace GUI
             {
                  string arr=txtbox1.Text=data[i].ToString();
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.ColumnCount = 3;
+
+            dataGridView1.Columns[0].Name = "Name";
+            dataGridView1.Columns[1].Name = "Age";
+            dataGridView1.Columns[2].Name = "City";
+
+            dataGridView1.Rows.Add("kathir", "25", "salem");
+            dataGridView1.Rows.Add("vino", "24", "attur");
+            dataGridView1.Rows.Add("maruthi", "26", "dharmapuri");
+            dataGridView1.Rows.Add("arun", "27", "chennai");
         }
     }
 }

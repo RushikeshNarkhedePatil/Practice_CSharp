@@ -9,6 +9,7 @@ namespace NModBusPractice
         public int DataBits { get; internal set; }
         public object Parity { get; internal set; }
         public object StopBits { get; internal set; }
+        public bool IsOpen { get; internal set; }
 
         internal void Open()
         {
