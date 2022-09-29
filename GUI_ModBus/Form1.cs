@@ -116,13 +116,20 @@ namespace GUI_ModBus
                 SlaveId = Convert.ToByte(txtWriteMultiId.Text);
                 Address = Convert.ToUInt16(txtMultiAddress.Text);
                 // WriteCoil = Convert.ToBoolean(txtWriteData.Text);
-                //WriteMultiCoil = item.ToString();
-                //foreach (bool item in listView3.Items)
-                //{
-                //    //WriteMultiCoil = item.ToString();
-                //}
+                int i = 0;  
+                foreach (ListViewItem item in listView3.Items)
+                {
+                    //Console.WriteLine($"Item: {item.Text}");
+                    var val = item.Text;
+                    WriteMultiCoil[i] = Convert.ToBoolean(val);
+                    i++;
+                    //foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
+                    //{
+                    //    Console.WriteLine($"\tSubitem:{subitem.Text}");
+                    //}
+                }
                 master.WriteMultipleCoils(SlaveId, Address,WriteMultiCoil);        // write data
-                listView2.Items.Add(WriteCoil.ToString());
+               // listView2.Items.Add(WriteCoil.ToString());
                 progressBar3.Value = 100;
             }
             catch (Exception err)
@@ -134,6 +141,16 @@ namespace GUI_ModBus
         private void btnAddData_Click(object sender, EventArgs e)
         {
             listView3.Items.Add(txtAcceptInput.Text);
+        }
+
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            listView3.Items.Clear();    // Remove all items
         }
     }
 }

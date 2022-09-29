@@ -59,6 +59,7 @@ namespace GUI_ModBus
             this.txtBaudRate = new System.Windows.Forms.TextBox();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnWriteSingleCoil = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -72,8 +73,11 @@ namespace GUI_ModBus
             this.lblWriteQuentity = new System.Windows.Forms.Label();
             this.lblWriteAddress = new System.Windows.Forms.Label();
             this.lblWriteId = new System.Windows.Forms.Label();
-            this.btnWriteSingleCoil = new System.Windows.Forms.Button();
             this.GroupBoxWriteMultiple = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddData = new System.Windows.Forms.Button();
+            this.btnWriteMultiCoil = new System.Windows.Forms.Button();
+            this.txtAcceptInput = new System.Windows.Forms.TextBox();
             this.listView3 = new System.Windows.Forms.ListView();
             this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -81,15 +85,11 @@ namespace GUI_ModBus
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtMultiAddress = new System.Windows.Forms.TextBox();
             this.txtWriteMultiId = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnWriteMultiCoil = new System.Windows.Forms.Button();
-            this.txtAcceptInput = new System.Windows.Forms.TextBox();
-            this.btnAddData = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -427,24 +427,35 @@ namespace GUI_ModBus
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(21, 319);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(406, 215);
+            this.groupBox4.Size = new System.Drawing.Size(406, 232);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Write Single Coil";
             // 
+            // btnWriteSingleCoil
+            // 
+            this.btnWriteSingleCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWriteSingleCoil.Location = new System.Drawing.Point(35, 137);
+            this.btnWriteSingleCoil.Name = "btnWriteSingleCoil";
+            this.btnWriteSingleCoil.Size = new System.Drawing.Size(88, 36);
+            this.btnWriteSingleCoil.TabIndex = 5;
+            this.btnWriteSingleCoil.Text = "Write";
+            this.btnWriteSingleCoil.UseVisualStyleBackColor = true;
+            this.btnWriteSingleCoil.Click += new System.EventHandler(this.btnWriteSingleCoil_Click);
+            // 
             // listView2
             // 
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(218, 16);
+            this.listView2.Location = new System.Drawing.Point(218, 25);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(182, 187);
+            this.listView2.Size = new System.Drawing.Size(182, 201);
             this.listView2.TabIndex = 2;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.List;
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(9, 180);
+            this.progressBar3.Location = new System.Drawing.Point(9, 193);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(187, 23);
             this.progressBar3.TabIndex = 4;
@@ -560,24 +571,15 @@ namespace GUI_ModBus
             this.lblWriteId.TabIndex = 0;
             this.lblWriteId.Text = "Slave Id :";
             // 
-            // btnWriteSingleCoil
-            // 
-            this.btnWriteSingleCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWriteSingleCoil.Location = new System.Drawing.Point(35, 137);
-            this.btnWriteSingleCoil.Name = "btnWriteSingleCoil";
-            this.btnWriteSingleCoil.Size = new System.Drawing.Size(88, 36);
-            this.btnWriteSingleCoil.TabIndex = 5;
-            this.btnWriteSingleCoil.Text = "Write";
-            this.btnWriteSingleCoil.UseVisualStyleBackColor = true;
-            this.btnWriteSingleCoil.Click += new System.EventHandler(this.btnWriteSingleCoil_Click);
-            // 
             // GroupBoxWriteMultiple
             // 
+            this.GroupBoxWriteMultiple.Controls.Add(this.button1);
+            this.GroupBoxWriteMultiple.Controls.Add(this.btnAddData);
             this.GroupBoxWriteMultiple.Controls.Add(this.btnWriteMultiCoil);
+            this.GroupBoxWriteMultiple.Controls.Add(this.txtAcceptInput);
             this.GroupBoxWriteMultiple.Controls.Add(this.listView3);
             this.GroupBoxWriteMultiple.Controls.Add(this.progressBar4);
             this.GroupBoxWriteMultiple.Controls.Add(this.groupBox7);
-            this.GroupBoxWriteMultiple.Controls.Add(this.textBox1);
             this.GroupBoxWriteMultiple.Controls.Add(this.txtMultiAddress);
             this.GroupBoxWriteMultiple.Controls.Add(this.txtWriteMultiId);
             this.GroupBoxWriteMultiple.Controls.Add(this.label16);
@@ -586,24 +588,67 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(444, 319);
             this.GroupBoxWriteMultiple.Name = "GroupBoxWriteMultiple";
-            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(406, 215);
+            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(415, 232);
             this.GroupBoxWriteMultiple.TabIndex = 0;
             this.GroupBoxWriteMultiple.TabStop = false;
             this.GroupBoxWriteMultiple.Text = "Write Multiple Coil";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(9, 166);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 31);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnAddData
+            // 
+            this.btnAddData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddData.Location = new System.Drawing.Point(9, 130);
+            this.btnAddData.Name = "btnAddData";
+            this.btnAddData.Size = new System.Drawing.Size(75, 30);
+            this.btnAddData.TabIndex = 4;
+            this.btnAddData.Text = "Add Data";
+            this.btnAddData.UseVisualStyleBackColor = true;
+            this.btnAddData.Click += new System.EventHandler(this.btnAddData_Click);
+            // 
+            // btnWriteMultiCoil
+            // 
+            this.btnWriteMultiCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWriteMultiCoil.Location = new System.Drawing.Point(96, 151);
+            this.btnWriteMultiCoil.Name = "btnWriteMultiCoil";
+            this.btnWriteMultiCoil.Size = new System.Drawing.Size(82, 36);
+            this.btnWriteMultiCoil.TabIndex = 5;
+            this.btnWriteMultiCoil.Text = "Write";
+            this.btnWriteMultiCoil.UseVisualStyleBackColor = true;
+            this.btnWriteMultiCoil.Click += new System.EventHandler(this.btnWriteMultiCoil_Click);
+            // 
+            // txtAcceptInput
+            // 
+            this.txtAcceptInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcceptInput.Location = new System.Drawing.Point(96, 102);
+            this.txtAcceptInput.Name = "txtAcceptInput";
+            this.txtAcceptInput.Size = new System.Drawing.Size(100, 22);
+            this.txtAcceptInput.TabIndex = 3;
+            this.txtAcceptInput.Text = "true";
             // 
             // listView3
             // 
             this.listView3.HideSelection = false;
             this.listView3.Location = new System.Drawing.Point(218, 16);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(182, 187);
+            this.listView3.Size = new System.Drawing.Size(182, 210);
             this.listView3.TabIndex = 2;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.List;
+            this.listView3.SelectedIndexChanged += new System.EventHandler(this.listView3_SelectedIndexChanged);
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(9, 180);
+            this.progressBar4.Location = new System.Drawing.Point(9, 203);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(187, 23);
             this.progressBar4.TabIndex = 4;
@@ -662,15 +707,6 @@ namespace GUI_ModBus
             this.label15.TabIndex = 0;
             this.label15.Text = "Slave Id :";
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(96, 99);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "true";
-            // 
             // txtMultiAddress
             // 
             this.txtMultiAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -719,48 +755,19 @@ namespace GUI_ModBus
             this.label18.TabIndex = 0;
             this.label18.Text = "Slave Id :";
             // 
-            // btnWriteMultiCoil
-            // 
-            this.btnWriteMultiCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWriteMultiCoil.Location = new System.Drawing.Point(63, 137);
-            this.btnWriteMultiCoil.Name = "btnWriteMultiCoil";
-            this.btnWriteMultiCoil.Size = new System.Drawing.Size(82, 36);
-            this.btnWriteMultiCoil.TabIndex = 5;
-            this.btnWriteMultiCoil.Text = "Write";
-            this.btnWriteMultiCoil.UseVisualStyleBackColor = true;
-            this.btnWriteMultiCoil.Click += new System.EventHandler(this.btnWriteMultiCoil_Click);
-            // 
-            // txtAcceptInput
-            // 
-            this.txtAcceptInput.Location = new System.Drawing.Point(465, 560);
-            this.txtAcceptInput.Name = "txtAcceptInput";
-            this.txtAcceptInput.Size = new System.Drawing.Size(100, 20);
-            this.txtAcceptInput.TabIndex = 3;
-            this.txtAcceptInput.Text = "true";
-            // 
-            // btnAddData
-            // 
-            this.btnAddData.Location = new System.Drawing.Point(479, 597);
-            this.btnAddData.Name = "btnAddData";
-            this.btnAddData.Size = new System.Drawing.Size(75, 23);
-            this.btnAddData.TabIndex = 4;
-            this.btnAddData.Text = "Add Data";
-            this.btnAddData.UseVisualStyleBackColor = true;
-            this.btnAddData.Click += new System.EventHandler(this.btnAddData_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 657);
-            this.Controls.Add(this.btnAddData);
-            this.Controls.Add(this.txtAcceptInput);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ModBus Project Perform Read Write  Operation";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -776,7 +783,6 @@ namespace GUI_ModBus
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -834,7 +840,6 @@ namespace GUI_ModBus
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtMultiAddress;
         private System.Windows.Forms.TextBox txtWriteMultiId;
         private System.Windows.Forms.Label label16;
@@ -843,6 +848,7 @@ namespace GUI_ModBus
         private System.Windows.Forms.Button btnWriteMultiCoil;
         private System.Windows.Forms.TextBox txtAcceptInput;
         private System.Windows.Forms.Button btnAddData;
+        private System.Windows.Forms.Button button1;
     }
 }
 
