@@ -37,21 +37,51 @@ namespace GUI_ModBus
                 //serialPort.Parity = Parity.None;
                 //serialPort.StopBits = StopBits.One;
                 //serialPort.Open();
-                ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
-              
-                SlaveId = Convert.ToByte(txtSlaveId.Text);
-                Address = Convert.ToUInt16(txtAddress.Text);
-                Quentity =Convert.ToUInt16(txtQuentity.Text);
-                var data= master.ReadInputs(SlaveId, Address, Quentity);    // read inputs
-                progressBar2.Value = 100;
-             
-                foreach (var item in data)
+                if(btnRTU.Checked==true)
                 {
-                    //MessageBox.Show(item.ToString());
-                    //txtReadInput.Text = item.ToString();
-                    listView1.Items.Add(item.ToString());
+                    ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+
+                    SlaveId = Convert.ToByte(txtSlaveId.Text);
+                    Address = Convert.ToUInt16(txtAddress.Text);
+                    Quentity = Convert.ToUInt16(txtQuentity.Text);
+                    var data = master.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                    progressBar2.Value = 100;
+
+                    foreach (var item in data)
+                    {
+                        //MessageBox.Show(item.ToString());
+                        //txtReadInput.Text = item.ToString();
+                        listView1.Items.Add(item.ToString());
+                    }
+                    this.btnClearReadInput.Enabled = true;
                 }
-                this.btnClearReadInput.Enabled = true;
+                else if(btnASCII.Checked==true)
+                {
+                    try
+                    {
+                        ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
+
+                        SlaveId = Convert.ToByte(txtSlaveId.Text);
+                        Address = Convert.ToUInt16(txtAddress.Text);
+                        Quentity = Convert.ToUInt16(txtQuentity.Text);
+                        var data = master.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                        progressBar2.Value = 100;
+
+                        foreach (var item in data)
+                        {
+                            //MessageBox.Show(item.ToString());
+                            //txtReadInput.Text = item.ToString();
+                            listView1.Items.Add(item.ToString());
+                        }
+                        this.btnClearReadInput.Enabled = true;
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                
+                }
+              
             }
             catch (Exception ex)
             {
@@ -221,6 +251,7 @@ namespace GUI_ModBus
                             //    Console.WriteLine($"\tSubitem:{subitem.Text}");
                             //}
                         }
+              
                         if(listView3.Items.Count!=0)
                         {
                             master.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
@@ -314,6 +345,10 @@ namespace GUI_ModBus
             }
             catch (Exception err)
             {
+                if (listView3.Items.Count == 5)
+                {
+                    MessageBox.Show("Only Add Less than 4 Values , Because Only four coils are available , Clear list and try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
