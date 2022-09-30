@@ -95,7 +95,7 @@ namespace GUI_ModBus
                 }
                 else
                 {
-                    MessageBox.Show("Select Proper Mode");
+                    MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
 
             }
@@ -227,6 +227,10 @@ namespace GUI_ModBus
                                                                                                 // listView2.Items.Add(WriteCoil.ToString());
                             progressBar4.Value = 100;
                         }
+                        else
+                        {
+                            MessageBox.Show("Add Data true or false to On OFF the Coil. true means ON and false means OFF", "Message Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                        
                     }
                     else if(btnMultiOn.Checked==true)
@@ -236,7 +240,7 @@ namespace GUI_ModBus
                     }
                     else if (btnMultiOff.Checked == true)       // off all coil
                     {
-                        DialogResult DialogResult = MessageBox.Show("Off all Coil", "Message", MessageBoxButtons.YesNo);
+                        DialogResult DialogResult = MessageBox.Show("Off all Coil", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
                         if(DialogResult==DialogResult.Yes)
                         {
                             // master.WriteMultipleCoils(SlaveId, Address, OffMultiCoil);        // Off all Coil
@@ -258,7 +262,7 @@ namespace GUI_ModBus
                     }
                     else
                     {
-                        MessageBox.Show("Select Value On Or Off", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Select Value On Or Off", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if(btnASCII.Checked==true)
