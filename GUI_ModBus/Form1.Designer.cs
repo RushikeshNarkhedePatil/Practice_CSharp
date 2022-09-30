@@ -84,6 +84,7 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple = new System.Windows.Forms.GroupBox();
             this.combWriteMulti = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnMultiOnOff = new System.Windows.Forms.RadioButton();
             this.btnMultiOff = new System.Windows.Forms.RadioButton();
             this.btnMultiOn = new System.Windows.Forms.RadioButton();
             this.btnClear = new System.Windows.Forms.Button();
@@ -128,35 +129,36 @@ namespace GUI_ModBus
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(444, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 277);
+            this.groupBox1.Size = new System.Drawing.Size(411, 293);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Read  Input";
             // 
             // btnClearReadInput
             // 
+            this.btnClearReadInput.BackColor = System.Drawing.SystemColors.Control;
             this.btnClearReadInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearReadInput.Location = new System.Drawing.Point(127, 153);
+            this.btnClearReadInput.Location = new System.Drawing.Point(123, 153);
             this.btnClearReadInput.Name = "btnClearReadInput";
-            this.btnClearReadInput.Size = new System.Drawing.Size(69, 37);
+            this.btnClearReadInput.Size = new System.Drawing.Size(69, 36);
             this.btnClearReadInput.TabIndex = 5;
             this.btnClearReadInput.Text = "Clear";
-            this.btnClearReadInput.UseVisualStyleBackColor = true;
+            this.btnClearReadInput.UseVisualStyleBackColor = false;
             this.btnClearReadInput.Click += new System.EventHandler(this.btnClearReadInput_Click);
             // 
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(208, 32);
+            this.listView1.Location = new System.Drawing.Point(207, 33);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(182, 187);
+            this.listView1.Size = new System.Drawing.Size(181, 187);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(9, 233);
+            this.progressBar2.Location = new System.Drawing.Point(6, 249);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(355, 22);
             this.progressBar2.TabIndex = 4;
@@ -170,7 +172,7 @@ namespace GUI_ModBus
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(-335, 14);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(208, 174);
+            this.groupBox3.Size = new System.Drawing.Size(207, 174);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Open Connection";
@@ -189,7 +191,7 @@ namespace GUI_ModBus
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 98);
+            this.label6.Location = new System.Drawing.Point(6, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 16);
             this.label6.TabIndex = 0;
@@ -217,13 +219,14 @@ namespace GUI_ModBus
             // 
             // btnRead
             // 
+            this.btnRead.BackColor = System.Drawing.SystemColors.Control;
             this.btnRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRead.Location = new System.Drawing.Point(25, 156);
+            this.btnRead.Location = new System.Drawing.Point(33, 153);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(78, 34);
+            this.btnRead.Size = new System.Drawing.Size(83, 36);
             this.btnRead.TabIndex = 2;
             this.btnRead.Text = "Read Coil";
-            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.UseVisualStyleBackColor = false;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // txtQuentity
@@ -247,7 +250,7 @@ namespace GUI_ModBus
             // txtSlaveId
             // 
             this.txtSlaveId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSlaveId.Location = new System.Drawing.Point(96, 32);
+            this.txtSlaveId.Location = new System.Drawing.Point(96, 33);
             this.txtSlaveId.Name = "txtSlaveId";
             this.txtSlaveId.Size = new System.Drawing.Size(100, 22);
             this.txtSlaveId.TabIndex = 1;
@@ -257,7 +260,7 @@ namespace GUI_ModBus
             // 
             this.lblQuentity.AutoSize = true;
             this.lblQuentity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuentity.Location = new System.Drawing.Point(6, 102);
+            this.lblQuentity.Location = new System.Drawing.Point(6, 101);
             this.lblQuentity.Name = "lblQuentity";
             this.lblQuentity.Size = new System.Drawing.Size(56, 16);
             this.lblQuentity.TabIndex = 0;
@@ -302,7 +305,7 @@ namespace GUI_ModBus
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(21, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 292);
+            this.groupBox2.Size = new System.Drawing.Size(399, 293);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Open Connection";
@@ -313,7 +316,7 @@ namespace GUI_ModBus
             this.groupMode.Controls.Add(this.btnRTU);
             this.groupMode.Location = new System.Drawing.Point(229, 22);
             this.groupMode.Name = "groupMode";
-            this.groupMode.Size = new System.Drawing.Size(153, 58);
+            this.groupMode.Size = new System.Drawing.Size(153, 59);
             this.groupMode.TabIndex = 5;
             this.groupMode.TabStop = false;
             this.groupMode.Text = "Mode";
@@ -350,7 +353,7 @@ namespace GUI_ModBus
             "None",
             "Even",
             "Odd"});
-            this.combParitybit.Location = new System.Drawing.Point(92, 168);
+            this.combParitybit.Location = new System.Drawing.Point(93, 168);
             this.combParitybit.Name = "combParitybit";
             this.combParitybit.Size = new System.Drawing.Size(121, 24);
             this.combParitybit.TabIndex = 4;
@@ -376,31 +379,33 @@ namespace GUI_ModBus
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(105, 206);
+            this.btnClose.Location = new System.Drawing.Point(105, 205);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 28);
+            this.btnClose.Size = new System.Drawing.Size(75, 36);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnOpen
             // 
+            this.btnOpen.BackColor = System.Drawing.Color.ForestGreen;
             this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpen.Location = new System.Drawing.Point(11, 206);
+            this.btnOpen.Location = new System.Drawing.Point(11, 205);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(75, 28);
+            this.btnOpen.Size = new System.Drawing.Size(78, 36);
             this.btnOpen.TabIndex = 2;
             this.btnOpen.Text = "Open";
-            this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.UseVisualStyleBackColor = false;
             this.btnOpen.Click += new System.EventHandler(this.button1_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(6, 171);
+            this.label9.Location = new System.Drawing.Point(6, 172);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 16);
             this.label9.TabIndex = 0;
@@ -420,7 +425,7 @@ namespace GUI_ModBus
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 102);
+            this.label3.Location = new System.Drawing.Point(6, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 16);
             this.label3.TabIndex = 0;
@@ -449,27 +454,27 @@ namespace GUI_ModBus
             // txtDataBit
             // 
             this.txtDataBit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataBit.Location = new System.Drawing.Point(92, 99);
+            this.txtDataBit.Location = new System.Drawing.Point(93, 99);
             this.txtDataBit.Name = "txtDataBit";
-            this.txtDataBit.Size = new System.Drawing.Size(120, 22);
+            this.txtDataBit.Size = new System.Drawing.Size(121, 22);
             this.txtDataBit.TabIndex = 1;
             this.txtDataBit.Text = "8";
             // 
             // txtBaudRate
             // 
             this.txtBaudRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBaudRate.Location = new System.Drawing.Point(92, 64);
+            this.txtBaudRate.Location = new System.Drawing.Point(93, 64);
             this.txtBaudRate.Name = "txtBaudRate";
-            this.txtBaudRate.Size = new System.Drawing.Size(120, 22);
+            this.txtBaudRate.Size = new System.Drawing.Size(121, 22);
             this.txtBaudRate.TabIndex = 1;
             this.txtBaudRate.Text = "9600";
             // 
             // txtPort
             // 
             this.txtPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPort.Location = new System.Drawing.Point(92, 32);
+            this.txtPort.Location = new System.Drawing.Point(93, 33);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(120, 22);
+            this.txtPort.Size = new System.Drawing.Size(121, 22);
             this.txtPort.TabIndex = 1;
             this.txtPort.Text = "COM4";
             // 
@@ -490,20 +495,21 @@ namespace GUI_ModBus
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(21, 319);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(400, 258);
+            this.groupBox4.Size = new System.Drawing.Size(399, 257);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Write Single Coil";
             // 
             // btnSingleClear
             // 
+            this.btnSingleClear.BackColor = System.Drawing.SystemColors.Control;
             this.btnSingleClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSingleClear.Location = new System.Drawing.Point(110, 179);
+            this.btnSingleClear.Location = new System.Drawing.Point(111, 179);
             this.btnSingleClear.Name = "btnSingleClear";
-            this.btnSingleClear.Size = new System.Drawing.Size(86, 34);
+            this.btnSingleClear.Size = new System.Drawing.Size(87, 34);
             this.btnSingleClear.TabIndex = 7;
             this.btnSingleClear.Text = "Clear";
-            this.btnSingleClear.UseVisualStyleBackColor = true;
+            this.btnSingleClear.UseVisualStyleBackColor = false;
             this.btnSingleClear.Click += new System.EventHandler(this.btnSingleClear_Click);
             // 
             // groupValue
@@ -522,7 +528,7 @@ namespace GUI_ModBus
             // 
             this.btnOff.AutoSize = true;
             this.btnOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOff.Location = new System.Drawing.Point(11, 46);
+            this.btnOff.Location = new System.Drawing.Point(11, 45);
             this.btnOff.Name = "btnOff";
             this.btnOff.Size = new System.Drawing.Size(42, 20);
             this.btnOff.TabIndex = 0;
@@ -533,32 +539,34 @@ namespace GUI_ModBus
             // btnOn
             // 
             this.btnOn.AutoSize = true;
+            this.btnOn.BackColor = System.Drawing.SystemColors.Control;
             this.btnOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOn.Location = new System.Drawing.Point(11, 20);
+            this.btnOn.Location = new System.Drawing.Point(11, 19);
             this.btnOn.Name = "btnOn";
             this.btnOn.Size = new System.Drawing.Size(43, 20);
             this.btnOn.TabIndex = 0;
             this.btnOn.TabStop = true;
             this.btnOn.Text = "On";
-            this.btnOn.UseVisualStyleBackColor = true;
+            this.btnOn.UseVisualStyleBackColor = false;
             // 
             // btnWriteSingleCoil
             // 
+            this.btnWriteSingleCoil.BackColor = System.Drawing.SystemColors.Control;
             this.btnWriteSingleCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWriteSingleCoil.Location = new System.Drawing.Point(110, 137);
+            this.btnWriteSingleCoil.Location = new System.Drawing.Point(111, 137);
             this.btnWriteSingleCoil.Name = "btnWriteSingleCoil";
-            this.btnWriteSingleCoil.Size = new System.Drawing.Size(88, 36);
+            this.btnWriteSingleCoil.Size = new System.Drawing.Size(87, 36);
             this.btnWriteSingleCoil.TabIndex = 5;
             this.btnWriteSingleCoil.Text = "Write";
-            this.btnWriteSingleCoil.UseVisualStyleBackColor = true;
+            this.btnWriteSingleCoil.UseVisualStyleBackColor = false;
             this.btnWriteSingleCoil.Click += new System.EventHandler(this.btnWriteSingleCoil_Click);
             // 
             // listView2
             // 
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(218, 25);
+            this.listView2.Location = new System.Drawing.Point(219, 25);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(176, 207);
+            this.listView2.Size = new System.Drawing.Size(175, 207);
             this.listView2.TabIndex = 2;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.List;
@@ -579,7 +587,7 @@ namespace GUI_ModBus
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(-335, 14);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(208, 174);
+            this.groupBox5.Size = new System.Drawing.Size(207, 174);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Open Connection";
@@ -598,7 +606,7 @@ namespace GUI_ModBus
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 98);
+            this.label2.Location = new System.Drawing.Point(6, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 16);
             this.label2.TabIndex = 0;
@@ -645,7 +653,7 @@ namespace GUI_ModBus
             // txtWriteId
             // 
             this.txtWriteId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWriteId.Location = new System.Drawing.Point(96, 32);
+            this.txtWriteId.Location = new System.Drawing.Point(96, 33);
             this.txtWriteId.Name = "txtWriteId";
             this.txtWriteId.Size = new System.Drawing.Size(100, 22);
             this.txtWriteId.TabIndex = 1;
@@ -655,7 +663,7 @@ namespace GUI_ModBus
             // 
             this.lblWriteQuentity.AutoSize = true;
             this.lblWriteQuentity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWriteQuentity.Location = new System.Drawing.Point(6, 102);
+            this.lblWriteQuentity.Location = new System.Drawing.Point(6, 101);
             this.lblWriteQuentity.Name = "lblWriteQuentity";
             this.lblWriteQuentity.Size = new System.Drawing.Size(71, 16);
             this.lblWriteQuentity.TabIndex = 0;
@@ -698,7 +706,7 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(444, 319);
             this.GroupBoxWriteMultiple.Name = "GroupBoxWriteMultiple";
-            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(423, 258);
+            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 257);
             this.GroupBoxWriteMultiple.TabIndex = 0;
             this.GroupBoxWriteMultiple.TabStop = false;
             this.GroupBoxWriteMultiple.Text = "Write Multiple Coil";
@@ -708,9 +716,9 @@ namespace GUI_ModBus
             this.combWriteMulti.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combWriteMulti.FormattingEnabled = true;
             this.combWriteMulti.Items.AddRange(new object[] {
-            "true",
-            "false"});
-            this.combWriteMulti.Location = new System.Drawing.Point(96, 93);
+            "false",
+            "true"});
+            this.combWriteMulti.Location = new System.Drawing.Point(96, 94);
             this.combWriteMulti.Name = "combWriteMulti";
             this.combWriteMulti.Size = new System.Drawing.Size(109, 24);
             this.combWriteMulti.TabIndex = 2;
@@ -718,21 +726,34 @@ namespace GUI_ModBus
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnMultiOnOff);
             this.groupBox6.Controls.Add(this.btnMultiOff);
             this.groupBox6.Controls.Add(this.btnMultiOn);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(90, 137);
+            this.groupBox6.Location = new System.Drawing.Point(11, 127);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(106, 49);
+            this.groupBox6.Size = new System.Drawing.Size(172, 49);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Value";
+            // 
+            // btnMultiOnOff
+            // 
+            this.btnMultiOnOff.AutoSize = true;
+            this.btnMultiOnOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMultiOnOff.Location = new System.Drawing.Point(103, 19);
+            this.btnMultiOnOff.Name = "btnMultiOnOff";
+            this.btnMultiOnOff.Size = new System.Drawing.Size(69, 19);
+            this.btnMultiOnOff.TabIndex = 2;
+            this.btnMultiOnOff.TabStop = true;
+            this.btnMultiOnOff.Text = "ON/OFF";
+            this.btnMultiOnOff.UseVisualStyleBackColor = true;
             // 
             // btnMultiOff
             // 
             this.btnMultiOff.AutoSize = true;
             this.btnMultiOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMultiOff.Location = new System.Drawing.Point(60, 22);
+            this.btnMultiOff.Location = new System.Drawing.Point(55, 18);
             this.btnMultiOff.Name = "btnMultiOff";
             this.btnMultiOff.Size = new System.Drawing.Size(42, 20);
             this.btnMultiOff.TabIndex = 0;
@@ -744,7 +765,7 @@ namespace GUI_ModBus
             // 
             this.btnMultiOn.AutoSize = true;
             this.btnMultiOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMultiOn.Location = new System.Drawing.Point(11, 20);
+            this.btnMultiOn.Location = new System.Drawing.Point(6, 18);
             this.btnMultiOn.Name = "btnMultiOn";
             this.btnMultiOn.Size = new System.Drawing.Size(43, 20);
             this.btnMultiOn.TabIndex = 0;
@@ -754,32 +775,34 @@ namespace GUI_ModBus
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.SystemColors.Control;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(9, 192);
+            this.btnClear.Location = new System.Drawing.Point(9, 182);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 31);
+            this.btnClear.Size = new System.Drawing.Size(75, 42);
             this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnWriteMultiCoil
             // 
+            this.btnWriteMultiCoil.BackColor = System.Drawing.SystemColors.Control;
             this.btnWriteMultiCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWriteMultiCoil.Location = new System.Drawing.Point(90, 192);
+            this.btnWriteMultiCoil.Location = new System.Drawing.Point(90, 182);
             this.btnWriteMultiCoil.Name = "btnWriteMultiCoil";
-            this.btnWriteMultiCoil.Size = new System.Drawing.Size(80, 31);
+            this.btnWriteMultiCoil.Size = new System.Drawing.Size(81, 42);
             this.btnWriteMultiCoil.TabIndex = 5;
             this.btnWriteMultiCoil.Text = "Write";
-            this.btnWriteMultiCoil.UseVisualStyleBackColor = true;
+            this.btnWriteMultiCoil.UseVisualStyleBackColor = false;
             this.btnWriteMultiCoil.Click += new System.EventHandler(this.btnWriteMultiCoil_Click);
             // 
             // listView3
             // 
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(218, 16);
+            this.listView3.Location = new System.Drawing.Point(219, 16);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(182, 236);
+            this.listView3.Size = new System.Drawing.Size(181, 235);
             this.listView3.TabIndex = 2;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.List;
@@ -801,7 +824,7 @@ namespace GUI_ModBus
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(-335, 14);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(208, 174);
+            this.groupBox7.Size = new System.Drawing.Size(207, 174);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Open Connection";
@@ -820,7 +843,7 @@ namespace GUI_ModBus
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(6, 98);
+            this.label13.Location = new System.Drawing.Point(6, 97);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(63, 16);
             this.label13.TabIndex = 0;
@@ -858,7 +881,7 @@ namespace GUI_ModBus
             // txtWriteMultiId
             // 
             this.txtWriteMultiId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWriteMultiId.Location = new System.Drawing.Point(96, 32);
+            this.txtWriteMultiId.Location = new System.Drawing.Point(96, 33);
             this.txtWriteMultiId.Name = "txtWriteMultiId";
             this.txtWriteMultiId.Size = new System.Drawing.Size(109, 22);
             this.txtWriteMultiId.TabIndex = 1;
@@ -868,7 +891,7 @@ namespace GUI_ModBus
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 102);
+            this.label16.Location = new System.Drawing.Point(6, 101);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(71, 16);
             this.label16.TabIndex = 0;
@@ -898,7 +921,8 @@ namespace GUI_ModBus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1137, 674);
+            this.BackColor = System.Drawing.Color.Beige;
+            this.ClientSize = new System.Drawing.Size(870, 596);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
@@ -906,6 +930,7 @@ namespace GUI_ModBus
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModBus Project Perform Read Write  Operation";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1004,6 +1029,7 @@ namespace GUI_ModBus
         private System.Windows.Forms.RadioButton btnMultiOn;
         private System.Windows.Forms.Button btnSingleClear;
         private System.Windows.Forms.ComboBox combWriteMulti;
+        private System.Windows.Forms.RadioButton btnMultiOnOff;
     }
 }
 

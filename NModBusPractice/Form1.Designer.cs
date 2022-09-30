@@ -46,6 +46,8 @@ namespace NModBusPractice
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.chklist1 = new System.Windows.Forms.CheckedListBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -234,11 +236,35 @@ namespace NModBusPractice
             this.textBox1.Size = new System.Drawing.Size(211, 211);
             this.textBox1.TabIndex = 8;
             // 
+            // chklist1
+            // 
+            this.chklist1.FormattingEnabled = true;
+            this.chklist1.Items.AddRange(new object[] {
+            "true",
+            "false",
+            "true",
+            "true"});
+            this.chklist1.Location = new System.Drawing.Point(555, 335);
+            this.chklist1.Name = "chklist1";
+            this.chklist1.Size = new System.Drawing.Size(120, 94);
+            this.chklist1.TabIndex = 9;
+            this.chklist1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(622, 230);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(148, 23);
+            this.comboBox1.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 336);
+            this.ClientSize = new System.Drawing.Size(974, 580);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.chklist1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -273,6 +299,8 @@ namespace NModBusPractice
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckedListBox chklist1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

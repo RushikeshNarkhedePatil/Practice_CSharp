@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using Modbus.Device;
+using System.IO;
 
 namespace GUI_ModBus
 {
@@ -23,7 +24,7 @@ namespace GUI_ModBus
         private ushort Quentity = 4;
         private bool WriteCoil=false;
         private bool[] WriteMultiCoil= {false,false,false,false };
-        private bool[] OffMultiCoil = { false, false, false, false };
+        private bool[] ONMultiCoil = { true, true, true, true };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private void btnRead_Click(object sender, EventArgs e)
         {
@@ -144,7 +145,7 @@ namespace GUI_ModBus
                     {
                         MessageBox.Show("Select On or Off option");
                     }
-                   
+                    btnSingleClear.Enabled = true;
                     //listView2.Items.Add(WriteCoil.ToString());
                     //progressBar3.Value = 100;
                 }
@@ -158,6 +159,7 @@ namespace GUI_ModBus
                     if (btnOn.Checked == true)
                     {
                         master.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
+                        
                         listView2.Items.Add(WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
@@ -185,6 +187,18 @@ namespace GUI_ModBus
         {
             try
             {
+
+                if (!serialPort.IsOpen)      // check Connection Open Or Not
+                {
+                    MessageBox.Show("Connection is Not Open Please establish Connection", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                //// Validation Check all information fill or not
+                //if (combWriteMulti.Text == "")
+                //{
+                //    MessageBox.Show("Fill Write Data", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                //}
                 if (btnRTU.Checked==true)            // check Mode
                 {
                     ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
@@ -192,13 +206,13 @@ namespace GUI_ModBus
                     SlaveId = Convert.ToByte(txtWriteMultiId.Text);
                     Address = Convert.ToUInt16(txtMultiAddress.Text);
                     // Check Button On Off Control
-                    if (btnMultiOn.Checked == true)
+                    if (btnMultiOnOff.Checked == true)                      // ON OFF Specific Coil 
                     {
                         // WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                         int i = 0;
                         foreach (ListViewItem item in listView3.Items)
                         {
-                            //Console.WriteLine($"Item: {item.Text}");
+                            Console.WriteLine($"Item: {item.Text}");
                             var val = item.Text;
                             WriteMultiCoil[i] = Convert.ToBoolean(val);
                             i++;
@@ -207,8 +221,17 @@ namespace GUI_ModBus
                             //    Console.WriteLine($"\tSubitem:{subitem.Text}");
                             //}
                         }
-                        master.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
-                                                                                            // listView2.Items.Add(WriteCoil.ToString());
+                        if(listView3.Items.Count!=0)
+                        {
+                            master.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
+                                                                                                // listView2.Items.Add(WriteCoil.ToString());
+                            progressBar4.Value = 100;
+                        }
+                       
+                    }
+                    else if(btnMultiOn.Checked==true)
+                    { 
+                        master.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
                         progressBar4.Value = 100;
                     }
                     else if (btnMultiOff.Checked == true)       // off all coil
@@ -235,7 +258,7 @@ namespace GUI_ModBus
                     }
                     else
                     {
-
+                        MessageBox.Show("Select Value On Or Off", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else if(btnASCII.Checked==true)
@@ -312,11 +335,12 @@ namespace GUI_ModBus
         private void btnSingleClear_Click(object sender, EventArgs e)
         {
             listView2.Items.Clear();
+            this.btnSingleClear.Enabled = false;
         }
 
         private void combWriteMulti_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listView3.Items.Add(combWriteMulti.Text);
+            listView3.Items.Add(combWriteMulti.Text);   // add data item in listview
         }
     }
 }

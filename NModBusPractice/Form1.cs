@@ -102,6 +102,15 @@ namespace NModBusPractice
             //var port = combPort.SelectedItem.ToString();    // port number
         }
 
-       
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chklist1.Items.Count <= 4)
+            {
+                foreach (var item in chklist1.Items)
+                {
+                    MessageBox.Show(item.ToString());
+                }
+            }
+        }
     }
 }
