@@ -30,6 +30,10 @@ namespace GUI_ModBus
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.combReadAddress = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnInput = new System.Windows.Forms.RadioButton();
+            this.btnCoil = new System.Windows.Forms.RadioButton();
             this.btnClearReadInput = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -40,7 +44,6 @@ namespace GUI_ModBus
             this.label8 = new System.Windows.Forms.Label();
             this.btnRead = new System.Windows.Forms.Button();
             this.txtQuentity = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtSlaveId = new System.Windows.Forms.TextBox();
             this.lblQuentity = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -102,6 +105,7 @@ namespace GUI_ModBus
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupMode.SuspendLayout();
@@ -115,13 +119,14 @@ namespace GUI_ModBus
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.combReadAddress);
+            this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.btnClearReadInput);
             this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.txtQuentity);
             this.groupBox1.Controls.Add(this.progressBar2);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.btnRead);
-            this.groupBox1.Controls.Add(this.txtQuentity);
-            this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.txtSlaveId);
             this.groupBox1.Controls.Add(this.lblQuentity);
             this.groupBox1.Controls.Add(this.lblAddress);
@@ -132,13 +137,61 @@ namespace GUI_ModBus
             this.groupBox1.Size = new System.Drawing.Size(411, 293);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Read  Input";
+            this.groupBox1.Text = "Read  Input / Coil";
+            // 
+            // combReadAddress
+            // 
+            this.combReadAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combReadAddress.FormattingEnabled = true;
+            this.combReadAddress.Items.AddRange(new object[] {
+            "3999",
+            "7999"});
+            this.combReadAddress.Location = new System.Drawing.Point(96, 64);
+            this.combReadAddress.Name = "combReadAddress";
+            this.combReadAddress.Size = new System.Drawing.Size(100, 24);
+            this.combReadAddress.TabIndex = 2;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.btnInput);
+            this.groupBox8.Controls.Add(this.btnCoil);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(29, 126);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(154, 52);
+            this.groupBox8.TabIndex = 6;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Value";
+            // 
+            // btnInput
+            // 
+            this.btnInput.AutoSize = true;
+            this.btnInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInput.Location = new System.Drawing.Point(67, 26);
+            this.btnInput.Name = "btnInput";
+            this.btnInput.Size = new System.Drawing.Size(54, 20);
+            this.btnInput.TabIndex = 0;
+            this.btnInput.TabStop = true;
+            this.btnInput.Text = "Input";
+            this.btnInput.UseVisualStyleBackColor = true;
+            // 
+            // btnCoil
+            // 
+            this.btnCoil.AutoSize = true;
+            this.btnCoil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoil.Location = new System.Drawing.Point(6, 26);
+            this.btnCoil.Name = "btnCoil";
+            this.btnCoil.Size = new System.Drawing.Size(49, 20);
+            this.btnCoil.TabIndex = 0;
+            this.btnCoil.TabStop = true;
+            this.btnCoil.Text = "Coil";
+            this.btnCoil.UseVisualStyleBackColor = true;
             // 
             // btnClearReadInput
             // 
             this.btnClearReadInput.BackColor = System.Drawing.SystemColors.Control;
             this.btnClearReadInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearReadInput.Location = new System.Drawing.Point(123, 153);
+            this.btnClearReadInput.Location = new System.Drawing.Point(127, 184);
             this.btnClearReadInput.Name = "btnClearReadInput";
             this.btnClearReadInput.Size = new System.Drawing.Size(69, 36);
             this.btnClearReadInput.TabIndex = 5;
@@ -221,7 +274,7 @@ namespace GUI_ModBus
             // 
             this.btnRead.BackColor = System.Drawing.SystemColors.Control;
             this.btnRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRead.Location = new System.Drawing.Point(33, 153);
+            this.btnRead.Location = new System.Drawing.Point(17, 184);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(83, 36);
             this.btnRead.TabIndex = 2;
@@ -232,20 +285,11 @@ namespace GUI_ModBus
             // txtQuentity
             // 
             this.txtQuentity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuentity.Location = new System.Drawing.Point(96, 96);
+            this.txtQuentity.Location = new System.Drawing.Point(96, 102);
             this.txtQuentity.Name = "txtQuentity";
             this.txtQuentity.Size = new System.Drawing.Size(100, 22);
             this.txtQuentity.TabIndex = 1;
             this.txtQuentity.Text = "4";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(96, 64);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(100, 22);
-            this.txtAddress.TabIndex = 1;
-            this.txtAddress.Text = "3999";
             // 
             // txtSlaveId
             // 
@@ -332,6 +376,7 @@ namespace GUI_ModBus
             this.btnASCII.TabStop = true;
             this.btnASCII.Text = "ASCII";
             this.btnASCII.UseVisualStyleBackColor = true;
+            this.btnASCII.Visible = false;
             // 
             // btnRTU
             // 
@@ -922,7 +967,7 @@ namespace GUI_ModBus
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(870, 596);
+            this.ClientSize = new System.Drawing.Size(865, 587);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
@@ -934,6 +979,8 @@ namespace GUI_ModBus
             this.Text = "ModBus Project Perform Read Write  Operation";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -962,7 +1009,6 @@ namespace GUI_ModBus
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Button btnRead;
         private System.Windows.Forms.TextBox txtQuentity;
-        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtSlaveId;
         private System.Windows.Forms.Label lblQuentity;
         private System.Windows.Forms.Label lblAddress;
@@ -1030,6 +1076,10 @@ namespace GUI_ModBus
         private System.Windows.Forms.Button btnSingleClear;
         private System.Windows.Forms.ComboBox combWriteMulti;
         private System.Windows.Forms.RadioButton btnMultiOnOff;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton btnInput;
+        private System.Windows.Forms.RadioButton btnCoil;
+        private System.Windows.Forms.ComboBox combReadAddress;
     }
 }
 

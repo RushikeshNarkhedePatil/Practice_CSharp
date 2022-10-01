@@ -26,6 +26,7 @@ namespace GUI_ModBus
         private bool WriteCoil=false;
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
+        private bool[] ReadCoilData = { false, false, false, false };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private void btnRead_Click(object sender, EventArgs e)
         {
@@ -41,23 +42,27 @@ namespace GUI_ModBus
                 masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
 
                 SlaveId = Convert.ToByte(txtSlaveId.Text);
-                Address = Convert.ToUInt16(txtAddress.Text);
+                //Address = Convert.ToUInt16(txtAddress.Text);
+                Address = Convert.ToUInt16(combReadAddress.Text);
                 Quentity = Convert.ToUInt16(txtQuentity.Text);
 
                 if (btnRTU.Checked==true)
                 {
-                    //ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
-
-                    //SlaveId = Convert.ToByte(txtSlaveId.Text);
-                    //Address = Convert.ToUInt16(txtAddress.Text);
-                    //Quentity = Convert.ToUInt16(txtQuentity.Text);
-                    var data = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read inputs
+                    //var data = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read inputs
+                    // Check Read Coil or Inputs
+                    
+                    if(btnCoil.Checked==true)
+                    {
+                        ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read inputs
+                    }
+                    else if(btnInput.Checked==true)
+                    {
+                        ReadCoilData = masterRtu.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                    }
                     progressBar2.Value = 100;
 
-                    foreach (var item in data)
+                    foreach (var item in ReadCoilData)
                     {
-                        //MessageBox.Show(item.ToString());
-                        //txtReadInput.Text = item.ToString();
                         listView1.Items.Add(item.ToString());
                     }
                     this.btnClearReadInput.Enabled = true;
@@ -66,18 +71,11 @@ namespace GUI_ModBus
                 {
                     try
                     {
-                        //ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
-
-                        //SlaveId = Convert.ToByte(txtSlaveId.Text);
-                        //Address = Convert.ToUInt16(txtAddress.Text);
-                        //Quentity = Convert.ToUInt16(txtQuentity.Text);
-                        var data = masterAscii.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                        var data = masterAscii.ReadCoils(SlaveId, Address, Quentity);    // read inputs
                         progressBar2.Value = 100;
 
                         foreach (var item in data)
                         {
-                            //MessageBox.Show(item.ToString());
-                            //txtReadInput.Text = item.ToString();
                             listView1.Items.Add(item.ToString());
                         }
                         this.btnClearReadInput.Enabled = true;
