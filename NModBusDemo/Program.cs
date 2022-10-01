@@ -23,7 +23,8 @@ namespace NModBusDemo
             serialPort.Open();
            
             ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
-            var data= master.ReadInputs(10, 7999, 4);    // read inputs
+            //var data= master.ReadInputs(10, 7999, 4);    // read inputs
+            var data = master.ReadCoils(10, 3999, 4);    // read inputs
 
             //bool[] data = { true, false, true, true };      // multiple file read karaychya asalyas tyala bool array of data pass karava lagto. true : on false : off
             //master.WriteSingleCoil(10, 3999,false);     // write single coil

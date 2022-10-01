@@ -19,8 +19,9 @@ namespace GUI_ModBus
         {
             InitializeComponent();
         }
+        private Modbus.Device.IModbusSerialMaster masterRtu, masterAscii;
         private byte SlaveId = 10;
-        private ushort Address = 7999;
+        private ushort Address = 3999;      //7999 add kel hot adhi
         private ushort Quentity = 4;
         private bool WriteCoil=false;
         private bool[] WriteMultiCoil= {false,false,false,false };
@@ -30,21 +31,27 @@ namespace GUI_ModBus
         {
             try
             {
-               // SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+                // SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
                 //serialPort.PortName = "COM4";
                 //serialPort.BaudRate = 9600;
                 //serialPort.DataBits = 8;
                 //serialPort.Parity = Parity.None;
                 //serialPort.StopBits = StopBits.One;
                 //serialPort.Open();
-                if(btnRTU.Checked==true)
-                {
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+                masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
 
-                    SlaveId = Convert.ToByte(txtSlaveId.Text);
-                    Address = Convert.ToUInt16(txtAddress.Text);
-                    Quentity = Convert.ToUInt16(txtQuentity.Text);
-                    var data = master.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                SlaveId = Convert.ToByte(txtSlaveId.Text);
+                Address = Convert.ToUInt16(txtAddress.Text);
+                Quentity = Convert.ToUInt16(txtQuentity.Text);
+
+                if (btnRTU.Checked==true)
+                {
+                    //ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+
+                    //SlaveId = Convert.ToByte(txtSlaveId.Text);
+                    //Address = Convert.ToUInt16(txtAddress.Text);
+                    //Quentity = Convert.ToUInt16(txtQuentity.Text);
+                    var data = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read inputs
                     progressBar2.Value = 100;
 
                     foreach (var item in data)
@@ -59,12 +66,12 @@ namespace GUI_ModBus
                 {
                     try
                     {
-                        ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
+                        //ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
 
-                        SlaveId = Convert.ToByte(txtSlaveId.Text);
-                        Address = Convert.ToUInt16(txtAddress.Text);
-                        Quentity = Convert.ToUInt16(txtQuentity.Text);
-                        var data = master.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                        //SlaveId = Convert.ToByte(txtSlaveId.Text);
+                        //Address = Convert.ToUInt16(txtAddress.Text);
+                        //Quentity = Convert.ToUInt16(txtQuentity.Text);
+                        var data = masterAscii.ReadInputs(SlaveId, Address, Quentity);    // read inputs
                         progressBar2.Value = 100;
 
                         foreach (var item in data)
@@ -89,39 +96,31 @@ namespace GUI_ModBus
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)  // open connection
+        private void OpenConnection(object sender, EventArgs e)  // open connection
         {
-            // SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
             try
             {
                 btnClose.Enabled = true;
+                // set SerialPort object property to open connection
+                serialPort.PortName = txtPort.Text;
+                serialPort.BaudRate = Convert.ToInt32(txtBaudRate.Text);
+                serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
+                serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
+                serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
+                serialPort.Open();
+
                 // Check Mode
-                if(btnRTU.Checked==true)
+                if (btnRTU.Checked==true)
                 {
-                    // MessageBox.Show("RTU");
-                    serialPort.PortName = txtPort.Text;
-                    serialPort.BaudRate = Convert.ToInt32(txtBaudRate.Text);
-                    serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
-                    serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
-                    serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
-                    serialPort.Open();
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+                    masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
                 }
                 else if(btnASCII.Checked==true)
                 {
-                    //MessageBox.Show("ASCII");
-                    //SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
-                    serialPort.PortName = txtPort.Text;
-                    serialPort.BaudRate = Convert.ToInt32(txtBaudRate.Text);
-                    serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
-                    serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
-                    serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
-                    serialPort.Open();
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
+                    masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
                 }
                 else
                 {
@@ -145,29 +144,36 @@ namespace GUI_ModBus
                 this.btnClose.Enabled = false;
                 this.btnOpen.Enabled = true;
             }
+            else
+            {
+                MessageBox.Show("Connection is already close", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnWriteSingleCoil_Click(object sender, EventArgs e)   // Write Single Coil
         {
             try
             {
+                SlaveId = Convert.ToByte(txtWriteId.Text);
+                Address = Convert.ToUInt16(txtWriteAdd.Text);
+                WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                 // check Mode
-                if(btnRTU.Checked==true)
+                if (btnRTU.Checked==true)
                 {
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+                    masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
 
-                    SlaveId = Convert.ToByte(txtWriteId.Text);
-                    Address = Convert.ToUInt16(txtWriteAdd.Text);
-                    WriteCoil = Convert.ToBoolean(txtWriteData.Text);
+                    //SlaveId = Convert.ToByte(txtWriteId.Text);
+                    //Address = Convert.ToUInt16(txtWriteAdd.Text);
+                    //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                     if(btnOn.Checked==true)
                     {
-                        master.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
+                        masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         listView2.Items.Add(WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else if(btnOff.Checked==true)
                     {
-                        master.WriteSingleCoil(SlaveId, Address, false);
+                        masterRtu.WriteSingleCoil(SlaveId, Address, false);
                         listView2.Items.Add(WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
@@ -176,26 +182,24 @@ namespace GUI_ModBus
                         MessageBox.Show("Select On or Off option");
                     }
                     btnSingleClear.Enabled = true;
-                    //listView2.Items.Add(WriteCoil.ToString());
-                    //progressBar3.Value = 100;
                 }
 
                 if(btnASCII.Checked==true)
                 {
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateAscii(serialPort);
-                    SlaveId = Convert.ToByte(txtWriteId.Text);
-                    Address = Convert.ToUInt16(txtWriteAdd.Text);
-                    WriteCoil = Convert.ToBoolean(txtWriteData.Text);
+                     masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                    //SlaveId = Convert.ToByte(txtWriteId.Text);
+                    //Address = Convert.ToUInt16(txtWriteAdd.Text);
+                    //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                     if (btnOn.Checked == true)
                     {
-                        master.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
+                        masterAscii.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         
                         listView2.Items.Add(WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else if (btnOff.Checked == true)
                     {
-                        master.WriteSingleCoil(SlaveId, Address, false);    // off coil
+                        masterAscii.WriteSingleCoil(SlaveId, Address, false);    // off coil
                     }
                     else
                     {
@@ -223,18 +227,16 @@ namespace GUI_ModBus
                     MessageBox.Show("Connection is Not Open Please establish Connection", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                //// Validation Check all information fill or not
-                //if (combWriteMulti.Text == "")
-                //{
-                //    MessageBox.Show("Fill Write Data", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                //}
+                SlaveId = Convert.ToByte(txtWriteMultiId.Text);
+                Address = Convert.ToUInt16(txtMultiAddress.Text);
+
                 if (btnRTU.Checked==true)            // check Mode
                 {
-                    ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
 
-                    SlaveId = Convert.ToByte(txtWriteMultiId.Text);
-                    Address = Convert.ToUInt16(txtMultiAddress.Text);
+                    //SlaveId = Convert.ToByte(txtWriteMultiId.Text);
+                    //Address = Convert.ToUInt16(txtMultiAddress.Text);
                     // Check Button On Off Control
                     if (btnMultiOnOff.Checked == true)                      // ON OFF Specific Coil 
                     {
@@ -254,7 +256,7 @@ namespace GUI_ModBus
               
                         if(listView3.Items.Count!=0)
                         {
-                            master.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
+                            masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
                                                                                                 // listView2.Items.Add(WriteCoil.ToString());
                             progressBar4.Value = 100;
                         }
@@ -266,7 +268,7 @@ namespace GUI_ModBus
                     }
                     else if(btnMultiOn.Checked==true)
                     { 
-                        master.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
+                        masterRtu.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
                         progressBar4.Value = 100;
                     }
                     else if (btnMultiOff.Checked == true)       // off all coil
@@ -282,7 +284,7 @@ namespace GUI_ModBus
                                 WriteMultiCoil[i] = false;  
                                 i++;
                             }
-                            master.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
+                            masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
                             listView3.Items.Clear();        // Remove all items
                             progressBar4.Value = 0;
                         }
@@ -298,7 +300,7 @@ namespace GUI_ModBus
                 }
                 else if(btnASCII.Checked==true)
                 {
-                    ModbusSerialMaster ASCIImaster = ModbusSerialMaster.CreateAscii(serialPort);
+                    masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
 
                     if (btnMultiOn.Checked == true)
                     {
@@ -309,7 +311,7 @@ namespace GUI_ModBus
                             WriteMultiCoil[i] = Convert.ToBoolean(val);
                             i++;
                         }
-                        ASCIImaster.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
+                        masterAscii.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
                         // listView2.Items.Add(WriteCoil.ToString());
                         progressBar4.Value = 100;
 
@@ -327,7 +329,7 @@ namespace GUI_ModBus
                                 WriteMultiCoil[i] = false;
                                 i++;
                             }
-                            ASCIImaster.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
+                            masterAscii.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
                             listView3.Items.Clear();        // Remove all items
                             progressBar4.Value = 0;
                         }

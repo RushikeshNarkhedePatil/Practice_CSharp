@@ -245,7 +245,7 @@ namespace GUI_ModBus
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(100, 22);
             this.txtAddress.TabIndex = 1;
-            this.txtAddress.Text = "7999";
+            this.txtAddress.Text = "3999";
             // 
             // txtSlaveId
             // 
@@ -399,7 +399,7 @@ namespace GUI_ModBus
             this.btnOpen.TabIndex = 2;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = false;
-            this.btnOpen.Click += new System.EventHandler(this.button1_Click);
+            this.btnOpen.Click += new System.EventHandler(this.OpenConnection);
             // 
             // label9
             // 
