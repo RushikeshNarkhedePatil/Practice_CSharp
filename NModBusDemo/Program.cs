@@ -22,17 +22,18 @@ namespace NModBusDemo
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
             serialPort.Open();
-           
+            bool[] value = { true, false, false, false };
             ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
             //var data= master.ReadInputs(10, 7999, 4);    // read inputs
             //var data = master.ReadCoils(10, 3999, 4);    // read Coil
             try
             {
-                var data = master.ReadInputs(10, 7999, 4);    // read Coil
-                foreach (var item in data)      // read data
-                {
-                    Console.WriteLine("{0}", item);    // dispaly data item
-                }
+                //var data = master.ReadInputs(10, 7999, 4);    // read Coil
+                var data = master.WriteSingleCoilAsync(10, 3999,true);
+                //foreach (var item in data)      // read data
+                //{
+                //    Console.WriteLine("{0}", item);    // dispaly data item
+                //}
             }
             catch (Exception err)
             {

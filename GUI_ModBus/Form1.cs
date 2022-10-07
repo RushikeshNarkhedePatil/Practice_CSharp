@@ -144,6 +144,7 @@ namespace GUI_ModBus
             }
             else
             {
+                btnOpen.Enabled = true;
                 MessageBox.Show("Connection is already close", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -167,12 +168,14 @@ namespace GUI_ModBus
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         listView2.Items.Add(WriteCoil.ToString());
+                         //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else if(btnOff.Checked==true)
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, false);
-                        listView2.Items.Add(WriteCoil.ToString());
+                        listView2.Items.Add("false");
+                        //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else
@@ -349,6 +352,12 @@ namespace GUI_ModBus
                 {
                     MessageBox.Show("Only Add Less than 4 Values , Because Only four coils are available , Clear list and try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                var ErrCode = err.Message;
+                if(ErrCode== "Function code 63 not supported.")
+                {
+                    MessageBox.Show("Function Code Not Supported", "Message", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                Console.WriteLine(ErrCode);
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
