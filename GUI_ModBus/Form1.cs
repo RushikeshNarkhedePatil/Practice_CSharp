@@ -25,7 +25,7 @@ namespace GUI_ModBus
         private ushort Quentity = 4;
         private bool WriteCoil=false;
         private bool ParityStatus = false;
-        private string dataBitStatus ="Rtu";
+        private string dataBitStatus;
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
         private bool[] ReadCoilData = { false, false, false, false };
@@ -86,7 +86,7 @@ namespace GUI_ModBus
                     
                     if(btnCoil.Checked==true)
                     {
-                        ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read inputs
+                        ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read Coil
                     }
                     else if(btnInput.Checked==true)
                     {
@@ -424,19 +424,16 @@ namespace GUI_ModBus
                     MessageBox.Show("Only Add Less than 4 Values , Because Only four coils are available , Clear list and try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 var ErrCode = err.Message;
-<<<<<<< HEAD
                 if(ErrCode== "Function code 63 not supported.")
                 {
                     MessageBox.Show("Function Code Not Supported", "Message", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
                 Console.WriteLine(ErrCode);
-=======
                 if (ErrCode == "Function code 63 not supported.")
                 {
                     MessageBox.Show("Not Supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
->>>>>>> Rushikesh
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

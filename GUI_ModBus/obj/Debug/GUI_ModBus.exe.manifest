@@ -49,15 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dsig:DigestValue>YWCWrcTEmVzD+8UWZb889xkYRbxhtjXkhSPOj2SSKzo=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>tPuxY2wFzsYQf3SLTa3Zvlrt9kccm52rPRRQY6dQHik=</dsig:DigestValue>
->>>>>>> Rushikesh
-=======
-        <dsig:DigestValue>gMks5iAn+FS4p9VjT3/zIOuuRCUVkHX7AkTDEUDS85g=</dsig:DigestValue>
->>>>>>> Rushikesh
+        <dsig:DigestValue>ufVwRLBGh8sJtfjMNlk2yRe2OJnpEhcjCvLWuMhJduE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
