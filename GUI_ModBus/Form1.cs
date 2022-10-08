@@ -24,10 +24,23 @@ namespace GUI_ModBus
         private ushort Address = 3999;      //7999 add kel hot adhi
         private ushort Quentity = 4;
         private bool WriteCoil=false;
+        private bool ParityStatus = false;
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
         private bool[] ReadCoilData = { false, false, false, false };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+        private bool CheckParity()
+        {
+            if(serialPort.Parity!=Parity.None)
+            {
+                MessageBox.Show("Parity bit is Not Supported", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void btnRead_Click(object sender, EventArgs e)
         {
             try
@@ -105,22 +118,24 @@ namespace GUI_ModBus
                 serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
                 serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
                 serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
-                serialPort.Open();
-
+                //serialPort.Open();
+                ParityStatus = CheckParity();
                 // Check Mode
-                if (btnRTU.Checked==true)
+                if ((btnRTU.Checked==true)&&(ParityStatus==true))
                 {
+                    serialPort.Open();
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
                 }
-                else if(btnASCII.Checked==true)
+                else if((btnASCII.Checked==true) && (ParityStatus == true))
                 {
+                    serialPort.Open();
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
                 }
-                else
+                else if(btnASCII.Checked==false&&btnRTU.Checked==false)
                 {
                     MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
@@ -144,6 +159,7 @@ namespace GUI_ModBus
             }
             else
             {
+                btnOpen.Enabled = true;
                 MessageBox.Show("Connection is already close", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -167,12 +183,14 @@ namespace GUI_ModBus
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         listView2.Items.Add(WriteCoil.ToString());
+                         //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else if(btnOff.Checked==true)
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, false);
-                        listView2.Items.Add(WriteCoil.ToString());
+                        listView2.Items.Add("false");
+                        //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
                     else
@@ -348,6 +366,12 @@ namespace GUI_ModBus
                 if (listView3.Items.Count == 5)
                 {
                     MessageBox.Show("Only Add Less than 4 Values , Because Only four coils are available , Clear list and try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                var ErrCode = err.Message;
+                if (ErrCode == "Function code 63 not supported.")
+                {
+                    MessageBox.Show("Not Supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
