@@ -25,13 +25,15 @@ namespace GUI_ModBus
         private ushort Quentity = 4;
         private bool WriteCoil=false;
         private bool ParityStatus = false;
+        private string dataBitStatus ="Rtu";
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
         private bool[] ReadCoilData = { false, false, false, false };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private bool CheckParity()
         {
-            if(serialPort.Parity!=Parity.None)
+            //MessageBox.Show(serialPort.DataBits.ToString());
+            if (serialPort.Parity!=Parity.None)
             {
                 MessageBox.Show("Parity bit is Not Supported", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
@@ -40,6 +42,24 @@ namespace GUI_ModBus
             {
                 return true;
             }
+        }
+
+        private string CheckDataBits()
+        {
+            var dataBits = serialPort.DataBits.ToString();    // check data bit 
+            if(dataBits=="8")
+            {
+                return "Rtu";
+            }
+            else if(dataBits=="7")
+            {
+                return "Ascii";
+            }
+            else
+            {
+                MessageBox.Show("Check Data Bit","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            return "Different Mode";
         }
         private void btnRead_Click(object sender, EventArgs e)
         {
@@ -103,12 +123,50 @@ namespace GUI_ModBus
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                int val = Convert.ToInt32(txtQuentity.Text);    // check value less than 4 or not 
+                if (val>=5)
+                {
+                    MessageBox.Show("Only 4 Register , Please specify Range between 1 to 4", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void OpenConnection(object sender, EventArgs e)  // open connection
         {
+           
+            void OpenConAscii()
+            {
+                try
+                {
+                    serialPort.Open();
+                    progressBar1.Value = 100;
+                    this.btnOpen.Enabled = false;
+                    masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            void OpenConRtu()
+            {
+                try
+                {
+                    serialPort.Open();
+                    progressBar1.Value = 100;
+                    this.btnOpen.Enabled = false;
+                    masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             try
             {
                 btnClose.Enabled = true;
@@ -118,26 +176,24 @@ namespace GUI_ModBus
                 serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
                 serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
                 serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
-                //serialPort.Open();
                 ParityStatus = CheckParity();
+                dataBitStatus = CheckDataBits();
                 // Check Mode
-                if ((btnRTU.Checked==true)&&(ParityStatus==true))
+                if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
                 {
-                    serialPort.Open();
-                    progressBar1.Value = 100;
-                    this.btnOpen.Enabled = false;
-                    masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
+                    OpenConRtu();
                 }
-                else if((btnASCII.Checked==true) && (ParityStatus == true))
+                else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
                 {
-                    serialPort.Open();
-                    progressBar1.Value = 100;
-                    this.btnOpen.Enabled = false;
-                    masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                    OpenConAscii();
                 }
                 else if(btnASCII.Checked==false&&btnRTU.Checked==false)
                 {
                     MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Check Mode or Data bit", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }

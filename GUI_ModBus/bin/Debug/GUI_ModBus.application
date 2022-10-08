@@ -15,9 +15,13 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <dsig:DigestValue>1bt3Bq6vDabNFQTET6qKpSWa6oor8ClLdd51Tg4JcQg=</dsig:DigestValue>
 =======
         <dsig:DigestValue>ge6HM/uF051oHKv5M1W2aTQkQ+xMceDWCVfqfRad030=</dsig:DigestValue>
+>>>>>>> Rushikesh
+=======
+        <dsig:DigestValue>rqhzIV9o9kS2YwxtjkbmGNjwfNUTrtpELna0kFuAr08=</dsig:DigestValue>
 >>>>>>> Rushikesh
       </hash>
     </dependentAssembly>
