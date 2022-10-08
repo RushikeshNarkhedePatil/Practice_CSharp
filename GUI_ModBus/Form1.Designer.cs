@@ -36,6 +36,7 @@ namespace GUI_ModBus
             this.btnCoil = new System.Windows.Forms.RadioButton();
             this.btnClearReadInput = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.txtQuentity = new System.Windows.Forms.TextBox();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@ namespace GUI_ModBus
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnRead = new System.Windows.Forms.Button();
-            this.txtQuentity = new System.Windows.Forms.TextBox();
             this.txtSlaveId = new System.Windows.Forms.TextBox();
             this.lblQuentity = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -209,6 +209,15 @@ namespace GUI_ModBus
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
+            // txtQuentity
+            // 
+            this.txtQuentity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuentity.Location = new System.Drawing.Point(96, 102);
+            this.txtQuentity.Name = "txtQuentity";
+            this.txtQuentity.Size = new System.Drawing.Size(100, 22);
+            this.txtQuentity.TabIndex = 1;
+            this.txtQuentity.Text = "4";
+            // 
             // progressBar2
             // 
             this.progressBar2.Location = new System.Drawing.Point(6, 249);
@@ -281,15 +290,6 @@ namespace GUI_ModBus
             this.btnRead.Text = "Read Coil";
             this.btnRead.UseVisualStyleBackColor = false;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // txtQuentity
-            // 
-            this.txtQuentity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuentity.Location = new System.Drawing.Point(96, 102);
-            this.txtQuentity.Name = "txtQuentity";
-            this.txtQuentity.Size = new System.Drawing.Size(100, 22);
-            this.txtQuentity.TabIndex = 1;
-            this.txtQuentity.Text = "4";
             // 
             // txtSlaveId
             // 
@@ -376,7 +376,6 @@ namespace GUI_ModBus
             this.btnASCII.TabStop = true;
             this.btnASCII.Text = "ASCII";
             this.btnASCII.UseVisualStyleBackColor = true;
-            this.btnASCII.Visible = false;
             // 
             // btnRTU
             // 
