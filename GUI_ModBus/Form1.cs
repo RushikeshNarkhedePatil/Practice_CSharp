@@ -10,14 +10,19 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using Modbus.Device;
 using System.IO;
+using System.Threading;
 
 namespace GUI_ModBus
 {
     public partial class Form1 : Form
     {
+        private readonly SynchronizationContext synchronizationContext;
+        private DateTime dt = DateTime.Now;
+        System.Windows.Forms.Timer t1 = new System.Windows.Forms.Timer();
         public Form1()
         {
             InitializeComponent();
+            synchronizationContext = SynchronizationContext.Current;
         }
         private Modbus.Device.IModbusSerialMaster masterRtu, masterAscii;
         private byte SlaveId = 10;
@@ -25,6 +30,10 @@ namespace GUI_ModBus
         private ushort Quentity = 4;
         private bool WriteCoil=false;
         private bool ParityStatus = false;
+        private bool SingleCoilStatus=false;
+        private int SingleCoilPosition = 0;
+        private short CoilCount = 1;
+        private int MultiCoilPosition = 0;
         private string dataBitStatus;
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
@@ -61,6 +70,133 @@ namespace GUI_ModBus
             }
             return "Different Mode";
         }
+        private bool CheckSingleCoilStatus()
+        {
+            if (WriteCoil == true)
+            {
+                //MessageBox.Show("Already Coil On");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //private bool CheckMultiCoilStatus()
+        //{
+        //    int i = 0;
+        //    CoilCount = 1;
+        //    foreach (var item in ReadCoilData)
+        //    {
+        //        if((btncheckCoil1.Checked==true|| btncheckCoil2.Checked == true || btncheckCoil3.Checked == true || btncheckCoil4.Checked == true) && (item==true))
+        //        {
+        //            MessageBox.Show($"Coil{CoilCount} alreay On");
+        //        }
+        //        else
+        //        {
+                   
+        //        }
+        //        CoilCount++;
+        //    }
+        //    return true;
+        //}
+        private int CheckSingleCoilPosition()
+        {
+            if(btnCoil1.Checked==true)
+            {
+                return 0;   // coil 1
+            }
+            else if (btnCoil2.Checked == true)
+            {
+                return 1;
+            }
+            else if (btnCoil3.Checked == true)
+            {
+                return 2;
+            }
+            else if (btnCoil4.Checked == true)
+            {
+                return 3;
+            }
+            else
+            {
+                return -1;  
+            }
+        }
+        private void DisplayMultiCoil()
+        {
+            CoilCount = 1;
+            foreach (var item in WriteMultiCoil)        // display result in listview
+            {
+                listView3.Items.Add("Coil" + CoilCount + "  " + item.ToString());
+                CoilCount++;
+            }
+        }
+        private void OnMultiCoil()
+        {
+            // Test Output
+            WriteMultiCoil = ReadCoilData;
+            foreach (var item in WriteMultiCoil)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            if(btncheckCoil1.Checked==true|| btncheckCoil2.Checked == true|| btncheckCoil3.Checked == true|| btncheckCoil4.Checked == true)
+            {
+                if (btncheckCoil1.Checked == true)
+                {
+                    WriteMultiCoil[0] = true;
+                }
+                if (btncheckCoil2.Checked == true)
+                {
+                    WriteMultiCoil[1] = true;
+                }
+                if (btncheckCoil3.Checked == true)
+                {
+                    WriteMultiCoil[2] = true;
+                }
+                if (btncheckCoil4.Checked == true)
+                {
+                    WriteMultiCoil[3] = true;
+                }
+                DisplayMultiCoil();        
+                masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
+                progressBar4.Value = 100;
+            }
+            else
+            {
+                MessageBox.Show("Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+        }
+        private void OffMultiCoil()
+        {
+            if(btncheckCoil1.Checked == true || btncheckCoil2.Checked == true || btncheckCoil3.Checked == true || btncheckCoil4.Checked == true)
+            {
+                if (btncheckCoil1.Checked == true)
+                {
+                    WriteMultiCoil[0] = false;
+                }
+                if (btncheckCoil2.Checked == true)
+                {
+                    WriteMultiCoil[1] = false;
+                }
+                if (btncheckCoil3.Checked == true)
+                {
+                    WriteMultiCoil[2] = false;
+                }
+                if (btncheckCoil4.Checked == true)
+                {
+                    WriteMultiCoil[3] = false;
+                }
+                masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
+                DisplayMultiCoil();
+            }
+            else
+            {
+                MessageBox.Show("Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+        }
         private void btnRead_Click(object sender, EventArgs e)
         {
             try
@@ -96,7 +232,8 @@ namespace GUI_ModBus
 
                     foreach (var item in ReadCoilData)
                     {
-                        listView1.Items.Add(item.ToString());
+                        listView1.Items.Add("Coil" + CoilCount + "  " + item.ToString());
+                        CoilCount++;
                     }
                     this.btnClearReadInput.Enabled = true;
                 }
@@ -145,6 +282,7 @@ namespace GUI_ModBus
                     serialPort.Open();
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
+                    
                     masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
                 }
                 catch (Exception err)
@@ -177,25 +315,22 @@ namespace GUI_ModBus
                 serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
                 serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
                 ParityStatus = CheckParity();
-                dataBitStatus = CheckDataBits();
+                //dataBitStatus = CheckDataBits();
                 // Check Mode
-                if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
+                //if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
+                if ((btnRTU.Checked == true) && (ParityStatus == true))
                 {
                     OpenConRtu();
                 }
-                else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
+                //else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
+                else if ((btnASCII.Checked == true) && (ParityStatus == true))
                 {
                     OpenConAscii();
                 }
-                else if(btnASCII.Checked==false&&btnRTU.Checked==false)
+                else
                 {
                     MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
-                else
-                {
-                    MessageBox.Show("Check Mode or Data bit", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
             }
             catch (Exception ex)
             {
@@ -227,14 +362,26 @@ namespace GUI_ModBus
                 SlaveId = Convert.ToByte(txtWriteId.Text);
                 Address = Convert.ToUInt16(txtWriteAdd.Text);
                 WriteCoil = Convert.ToBoolean(txtWriteData.Text);
+                SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
+                SingleCoilStatus = CheckSingleCoilStatus();
+                for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
+                {
+                    Address++;
+                }
+                //Address = Convert.ToUInt16(Address-1);
                 // check Mode
-                if (btnRTU.Checked==true)
+                if(SingleCoilPosition==-1)          // filter
+                {
+                    MessageBox.Show("Please Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if(SingleCoilStatus==true)     //fillter to check coil already on or not
+                {
+                    MessageBox.Show("Coil is already ON", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (btnRTU.Checked==true)
                 {
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-
-                    //SlaveId = Convert.ToByte(txtWriteId.Text);
-                    //Address = Convert.ToUInt16(txtWriteAdd.Text);
-                    //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                     if(btnOn.Checked==true)
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
@@ -256,7 +403,7 @@ namespace GUI_ModBus
                     btnSingleClear.Enabled = true;
                 }
 
-                if(btnASCII.Checked==true)
+                else if(btnASCII.Checked==true)
                 {
                      masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
                     //SlaveId = Convert.ToByte(txtWriteId.Text);
@@ -320,28 +467,28 @@ namespace GUI_ModBus
                             var val = item.Text;
                             WriteMultiCoil[i] = Convert.ToBoolean(val);
                             i++;
-                            //foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
-                            //{
-                            //    Console.WriteLine($"\tSubitem:{subitem.Text}");
-                            //}
                         }
-              
-                        if(listView3.Items.Count!=0)
-                        {
-                            masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
-                                                                                                // listView2.Items.Add(WriteCoil.ToString());
-                            progressBar4.Value = 100;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Add Data true or false to On OFF the Coil. true means ON and false means OFF", "Message Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                        masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data                                                                    
+                        progressBar4.Value = 100;
+                        //if (listView3.Items.Count!=0)
+                        //{
+                        //    masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // write data
+                        //                                                                        // listView2.Items.Add(WriteCoil.ToString());
+                        //    progressBar4.Value = 100;
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Add Data true or false to On OFF the Coil. true means ON and false means OFF", "Message Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //}
                        
                     }
                     else if(btnMultiOn.Checked==true)
-                    { 
-                        masterRtu.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
-                        progressBar4.Value = 100;
+                    {
+                        //masterRtu.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
+                        //CheckMultiCoilStatus();
+                        OnMultiCoil();       // check coil position
+                        //masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
+                        //progressBar4.Value = 100;
                     }
                     else if (btnMultiOff.Checked == true)       // off all coil
                     {
@@ -349,16 +496,17 @@ namespace GUI_ModBus
                         if(DialogResult==DialogResult.Yes)
                         {
                             // master.WriteMultipleCoils(SlaveId, Address, OffMultiCoil);        // Off all Coil
-                            int i = 0;
-                            foreach (ListViewItem item in listView3.Items)
-                            {
-                                var val = item.Text;
-                                WriteMultiCoil[i] = false;  
-                                i++;
-                            }
-                            masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
-                            listView3.Items.Clear();        // Remove all items
-                            progressBar4.Value = 0;
+                            OffMultiCoil();       // check coil position
+                            //int i = 0;
+                            //foreach (ListViewItem item in listView3.Items)
+                            //{
+                            //    var val = item.Text;
+                            //    WriteMultiCoil[i] = false;  
+                            //    i++;
+                            //}
+                            //masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
+                            //listView3.Items.Clear();        // Remove all items
+                            //progressBar4.Value = 0;
                         }
                         else
                         {
@@ -422,17 +570,6 @@ namespace GUI_ModBus
                 if (listView3.Items.Count == 5)
                 {
                     MessageBox.Show("Only Add Less than 4 Values , Because Only four coils are available , Clear list and try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                var ErrCode = err.Message;
-                if(ErrCode== "Function code 63 not supported.")
-                {
-                    MessageBox.Show("Function Code Not Supported", "Message", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-                Console.WriteLine(ErrCode);
-                if (ErrCode == "Function code 63 not supported.")
-                {
-                    MessageBox.Show("Not Supported", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

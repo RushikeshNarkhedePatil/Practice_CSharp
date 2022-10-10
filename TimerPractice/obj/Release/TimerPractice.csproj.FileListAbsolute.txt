@@ -1,0 +1,10 @@
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\bin\Release\TimerPractice.exe.config
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\bin\Release\TimerPractice.exe
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\bin\Release\TimerPractice.pdb
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.Timer.resources
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.Properties.Resources.resources
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.csproj.GenerateResource.cache
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.exe
+C:\Users\varad\source\repos\PracticeDotNet\TimerPractice\obj\Release\TimerPractice.pdb
