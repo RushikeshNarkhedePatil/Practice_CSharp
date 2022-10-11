@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_ModBus", "GUI_ModBus\GU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerPractice", "TimerPractice\TimerPractice.csproj", "{01C2912B-109B-4954-8827-F905435109BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallBackTimer", "CallBackTimer\CallBackTimer.csproj", "{1E310524-72A2-4285-83DC-FA5B65A6AEAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,14 @@ Global
 		{01C2912B-109B-4954-8827-F905435109BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01C2912B-109B-4954-8827-F905435109BD}.Release|x64.ActiveCfg = Release|Any CPU
 		{01C2912B-109B-4954-8827-F905435109BD}.Release|x64.Build.0 = Release|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Debug|x64.Build.0 = Debug|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E310524-72A2-4285-83DC-FA5B65A6AEAD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

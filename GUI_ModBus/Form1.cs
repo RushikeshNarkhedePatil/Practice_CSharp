@@ -135,11 +135,11 @@ namespace GUI_ModBus
         private void OnMultiCoil()
         {
             // Test Output
-            WriteMultiCoil = ReadCoilData;
-            foreach (var item in WriteMultiCoil)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            //WriteMultiCoil = ReadCoilData;
+            //foreach (var item in WriteMultiCoil)
+            //{
+            //    Console.WriteLine(item.ToString());
+            //}
             if(btncheckCoil1.Checked==true|| btncheckCoil2.Checked == true|| btncheckCoil3.Checked == true|| btncheckCoil4.Checked == true)
             {
                 if (btncheckCoil1.Checked == true)
@@ -298,6 +298,14 @@ namespace GUI_ModBus
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
+                    //add for testing
+                    int Seconds = 5 * 1000;
+                    var Timer = new System.Threading.Timer(TimerMethod, null, 0, Seconds);
+                    void TimerMethod(object o)
+                    {
+                        Console.WriteLine("Jay Ganesh");
+                    }
+                    // end
                 }
                 catch (Exception err)
                 {
