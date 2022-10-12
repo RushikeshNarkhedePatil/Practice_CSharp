@@ -16,13 +16,9 @@ namespace GUI_ModBus
 {
     public partial class Form1 : Form
     {
-        private readonly SynchronizationContext synchronizationContext;
-        private DateTime dt = DateTime.Now;
-        System.Windows.Forms.Timer t1 = new System.Windows.Forms.Timer();
         public Form1()
         {
             InitializeComponent();
-            synchronizationContext = SynchronizationContext.Current;
         }
         private Modbus.Device.IModbusSerialMaster masterRtu, masterAscii;
         private byte SlaveId = 10;
@@ -41,6 +37,7 @@ namespace GUI_ModBus
         private bool[] ReadCoilData = { false, false, false, false };
         private bool[] ReadInputData = { false, false, false, false };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+        private Thread autoCoilStatus, autoInputStatus;
         private bool CheckParity()
         {
             //MessageBox.Show(serialPort.DataBits.ToString());
@@ -75,8 +72,17 @@ namespace GUI_ModBus
         //add for testing and display result continueosly on Screen
         private void AutoCoilStatus()
         {
-            
+          
             TimerCallback timeCB = new TimerCallback(PrintCoil);
+            System.Threading.Timer t = new System.Threading.Timer(
+            timeCB,   // The TimerCallback delegate type.
+            "Hi",     // Any info to pass into the called method.
+            0,        // Amount of time to wait before starting.
+            3000);
+        }
+        private void AutoInputStatus()
+        {
+            TimerCallback timeCB = new TimerCallback(PrintInput);
             System.Threading.Timer t = new System.Threading.Timer(
             timeCB,   // The TimerCallback delegate type.
             "Hi",     // Any info to pass into the called method.
@@ -86,7 +92,7 @@ namespace GUI_ModBus
 
         void PrintCoil(object state)
         {
-            ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+            ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
             
             //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
             if (this.listView4.InvokeRequired)
@@ -107,32 +113,36 @@ namespace GUI_ModBus
                 }
 
             }
-           // ReadInputData = masterRtu.ReadInputs(SlaveId, Address, Quentity);
-            //if (this.listView5.InvokeRequired)
-            //{
-            //    InputCount = 1;
-            //    //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
-            //    foreach (var item in ReadInputData)
-            //    {
-            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Add("Input " + InputCount + " " + item.ToString())));
-
-            //        InputCount++;
-            //    }
-            //    if (listView5.Items.Count >= 5)
-            //    {
-            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
-            //        CoilCount = 1;
-            //    }
-            //    if (listView5.Items.Count >= 5)
-            //    {
-            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
-            //        InputCount = 1;
-            //    }
-
-            //}
 
         }
-        //end of auto display method
+
+        void PrintInput(object state)
+        {
+            ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+            if (this.listView5.InvokeRequired)
+            {
+                InputCount = 1;
+                //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+                foreach (var item in ReadInputData)
+                {
+                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Add("Input " + InputCount + " " + item.ToString())));
+
+                    InputCount++;
+                }
+                if (listView5.Items.Count >= 5)
+                {
+                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+                    CoilCount = 1;
+                }
+                if (listView5.Items.Count >= 5)
+                {
+                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+                    InputCount = 1;
+                }
+
+            }
+        }
+        //end 
         private bool CheckSingleCoilStatus()
         {
             if (WriteCoil == true)
@@ -288,18 +298,30 @@ namespace GUI_ModBus
                     if(btnCoil.Checked==true)
                     {
                         ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);    // read Coil
+                        CoilCount = 1;
+                        foreach (var item in ReadCoilData)
+                        {
+                            listView1.Items.Add("Coil" + CoilCount + "  " + item.ToString());
+                            CoilCount++;
+                        }
                     }
                     else if(btnInput.Checked==true)
                     {
-                        ReadCoilData = masterRtu.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                        ReadInputData = masterRtu.ReadInputs(SlaveId, Address, Quentity);    // read inputs
+                        InputCount = 1;
+                        foreach (var item in ReadInputData)
+                        {
+                            listView1.Items.Add("Input" + InputCount + "  " + item.ToString());
+                            InputCount++;
+                        }
                     }
                     progressBar2.Value = 100;
                     CoilCount = 1;
-                    foreach (var item in ReadCoilData)
-                    {
-                        listView1.Items.Add("Coil" + CoilCount + "  " + item.ToString());
-                        CoilCount++;
-                    }
+                    //foreach (var item in ReadCoilData)
+                    //{
+                    //    listView1.Items.Add("Coil" + CoilCount + "  " + item.ToString());
+                    //    CoilCount++;
+                    //}
                     this.btnClearReadInput.Enabled = true;
                 }
                 else if(btnASCII.Checked==true)
@@ -363,9 +385,11 @@ namespace GUI_ModBus
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    //Thread threadCoilStatus = new Thread(AutoCoilStatus);
-                    //threadCoilStatus.Start();
-                    AutoCoilStatus();       // Display automatic coil on off status
+                    autoCoilStatus = new Thread(AutoCoilStatus);
+                    autoInputStatus = new Thread(AutoInputStatus);
+                    autoCoilStatus.Start();
+                    autoInputStatus.Start();
+                    //AutoCoilStatus();       // Display automatic coil on off status
                 }
                 catch (Exception err)
                 {

@@ -830,9 +830,9 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.Controls.Add(this.label17);
             this.GroupBoxWriteMultiple.Controls.Add(this.label18);
             this.GroupBoxWriteMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 311);
+            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 322);
             this.GroupBoxWriteMultiple.Name = "GroupBoxWriteMultiple";
-            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 348);
+            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 337);
             this.GroupBoxWriteMultiple.TabIndex = 0;
             this.GroupBoxWriteMultiple.TabStop = false;
             this.GroupBoxWriteMultiple.Text = "Write Multiple Coil";
@@ -1160,7 +1160,7 @@ namespace GUI_ModBus
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(1070, 845);
+            this.ClientSize = new System.Drawing.Size(906, 820);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
