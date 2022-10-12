@@ -114,6 +114,11 @@ namespace GUI_ModBus
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.listView4 = new System.Windows.Forms.ListView();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.listView5 = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -127,6 +132,9 @@ namespace GUI_ModBus
             this.groupBox6.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -549,7 +557,7 @@ namespace GUI_ModBus
             this.groupBox4.Controls.Add(this.lblWriteAddress);
             this.groupBox4.Controls.Add(this.lblWriteId);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 319);
+            this.groupBox4.Location = new System.Drawing.Point(21, 311);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(399, 348);
             this.groupBox4.TabIndex = 0;
@@ -822,9 +830,9 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.Controls.Add(this.label17);
             this.GroupBoxWriteMultiple.Controls.Add(this.label18);
             this.GroupBoxWriteMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 319);
+            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 311);
             this.GroupBoxWriteMultiple.Name = "GroupBoxWriteMultiple";
-            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 337);
+            this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 348);
             this.GroupBoxWriteMultiple.TabIndex = 0;
             this.GroupBoxWriteMultiple.TabStop = false;
             this.GroupBoxWriteMultiple.Text = "Write Multiple Coil";
@@ -1093,12 +1101,67 @@ namespace GUI_ModBus
             this.label18.TabIndex = 0;
             this.label18.Text = "Slave Id :";
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.listView4);
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox11.Location = new System.Drawing.Point(9, 21);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(398, 125);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Coil Status";
+            // 
+            // listView4
+            // 
+            this.listView4.HideSelection = false;
+            this.listView4.Location = new System.Drawing.Point(11, 21);
+            this.listView4.Name = "listView4";
+            this.listView4.Size = new System.Drawing.Size(381, 98);
+            this.listView4.TabIndex = 0;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.listView4.View = System.Windows.Forms.View.List;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.groupBox13);
+            this.groupBox12.Controls.Add(this.groupBox11);
+            this.groupBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox12.Location = new System.Drawing.Point(13, 665);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(870, 152);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Auto Update Coil  and Input Status";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.listView5);
+            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox13.Location = new System.Drawing.Point(422, 21);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(398, 125);
+            this.groupBox13.TabIndex = 2;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Input Status";
+            // 
+            // listView5
+            // 
+            this.listView5.HideSelection = false;
+            this.listView5.Location = new System.Drawing.Point(11, 21);
+            this.listView5.Name = "listView5";
+            this.listView5.Size = new System.Drawing.Size(381, 98);
+            this.listView5.TabIndex = 0;
+            this.listView5.UseCompatibleStateImageBehavior = false;
+            this.listView5.View = System.Windows.Forms.View.List;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(1130, 845);
+            this.ClientSize = new System.Drawing.Size(1070, 845);
+            this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
@@ -1134,6 +1197,9 @@ namespace GUI_ModBus
             this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1225,6 +1291,11 @@ namespace GUI_ModBus
         private System.Windows.Forms.CheckBox btncheckCoil2;
         private System.Windows.Forms.CheckBox btncheckCoil3;
         private System.Windows.Forms.CheckBox btncheckCoil1;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.ListView listView5;
     }
 }
 

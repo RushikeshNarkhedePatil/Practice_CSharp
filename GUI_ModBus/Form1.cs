@@ -33,11 +33,13 @@ namespace GUI_ModBus
         private bool SingleCoilStatus=false;
         private int SingleCoilPosition = 0;
         private short CoilCount = 1;
+        private short InputCount = 1;
         private int MultiCoilPosition = 0;
         private string dataBitStatus;
         private bool[] WriteMultiCoil= {false,false,false,false };
         private bool[] ONMultiCoil = { true, true, true, true };
         private bool[] ReadCoilData = { false, false, false, false };
+        private bool[] ReadInputData = { false, false, false, false };
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private bool CheckParity()
         {
@@ -70,6 +72,67 @@ namespace GUI_ModBus
             }
             return "Different Mode";
         }
+        //add for testing and display result continueosly on Screen
+        private void AutoCoilStatus()
+        {
+            
+            TimerCallback timeCB = new TimerCallback(PrintCoil);
+            System.Threading.Timer t = new System.Threading.Timer(
+            timeCB,   // The TimerCallback delegate type.
+            "Hi",     // Any info to pass into the called method.
+            0,        // Amount of time to wait before starting.
+            3000);
+        }
+
+        void PrintCoil(object state)
+        {
+            ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+            
+            //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
+            if (this.listView4.InvokeRequired)
+            {
+                CoilCount = 1;
+                InputCount = 1;
+                //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+                foreach (var item in ReadCoilData)
+                {
+                    listView4.Invoke((MethodInvoker)(() => listView4.Items.Add("Coil " + CoilCount + " " + item.ToString())));
+
+                    CoilCount++;
+                }
+                if (listView4.Items.Count >= 5)
+                {
+                    listView4.Invoke((MethodInvoker)(() => listView4.Items.Clear()));
+                    CoilCount = 1;
+                }
+
+            }
+           // ReadInputData = masterRtu.ReadInputs(SlaveId, Address, Quentity);
+            //if (this.listView5.InvokeRequired)
+            //{
+            //    InputCount = 1;
+            //    //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+            //    foreach (var item in ReadInputData)
+            //    {
+            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Add("Input " + InputCount + " " + item.ToString())));
+
+            //        InputCount++;
+            //    }
+            //    if (listView5.Items.Count >= 5)
+            //    {
+            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+            //        CoilCount = 1;
+            //    }
+            //    if (listView5.Items.Count >= 5)
+            //    {
+            //        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+            //        InputCount = 1;
+            //    }
+
+            //}
+
+        }
+        //end of auto display method
         private bool CheckSingleCoilStatus()
         {
             if (WriteCoil == true)
@@ -161,6 +224,7 @@ namespace GUI_ModBus
                 DisplayMultiCoil();        
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
                 progressBar4.Value = 100;
+                AutoCoilStatus();
             }
             else
             {
@@ -189,7 +253,8 @@ namespace GUI_ModBus
                     WriteMultiCoil[3] = false;
                 }
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
-                DisplayMultiCoil();
+                DisplayMultiCoil();     // display result 
+                AutoCoilStatus();
             }
             else
             {
@@ -229,7 +294,7 @@ namespace GUI_ModBus
                         ReadCoilData = masterRtu.ReadInputs(SlaveId, Address, Quentity);    // read inputs
                     }
                     progressBar2.Value = 100;
-
+                    CoilCount = 1;
                     foreach (var item in ReadCoilData)
                     {
                         listView1.Items.Add("Coil" + CoilCount + "  " + item.ToString());
@@ -298,14 +363,9 @@ namespace GUI_ModBus
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    //add for testing
-                    int Seconds = 5 * 1000;
-                    var Timer = new System.Threading.Timer(TimerMethod, null, 0, Seconds);
-                    void TimerMethod(object o)
-                    {
-                        Console.WriteLine("Jay Ganesh");
-                    }
-                    // end
+                    //Thread threadCoilStatus = new Thread(AutoCoilStatus);
+                    //threadCoilStatus.Start();
+                    AutoCoilStatus();       // Display automatic coil on off status
                 }
                 catch (Exception err)
                 {
@@ -371,6 +431,7 @@ namespace GUI_ModBus
                 Address = Convert.ToUInt16(txtWriteAdd.Text);
                 WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                 SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
+                AutoCoilStatus();
                 SingleCoilStatus = CheckSingleCoilStatus();
                 for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
                 {
@@ -383,14 +444,14 @@ namespace GUI_ModBus
                     MessageBox.Show("Please Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                else if(SingleCoilStatus==true)     //fillter to check coil already on or not
-                {
-                    MessageBox.Show("Coil is already ON", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //else if (SingleCoilStatus == true)     //fillter to check coil already on or not
+                //{
+                //    MessageBox.Show("Coil is already ON", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
                 else if (btnRTU.Checked==true)
                 {
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    if(btnOn.Checked==true)
+                    if (btnOn.Checked==true)
                     {
                         masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         listView2.Items.Add(WriteCoil.ToString());

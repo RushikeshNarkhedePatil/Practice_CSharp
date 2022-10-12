@@ -28,38 +28,49 @@ namespace NModBusDemo
         }
         private static void TimerMethod(object o)
         {
-            Console.WriteLine("Jay Ganesh");
+                Console.WriteLine("Jay Ganesh");
         }
         static void Main(string[] args)
         {
 
             //System.Threading.TimerCallback cb = new System.Threading;
-            ushort[] writeData;
-            SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
-            serialPort.PortName = "COM4";
-            serialPort.BaudRate = 9600;
-            serialPort.DataBits = 8;
-            serialPort.Parity = Parity.None;
-            serialPort.StopBits = StopBits.One;
-            serialPort.Open();
+            //ushort[] writeData;
+            //SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+            //serialPort.PortName = "COM4";
+            //serialPort.BaudRate = 9600;
+            //serialPort.DataBits = 8;
+            //serialPort.Parity = Parity.None;
+            //serialPort.StopBits = StopBits.One;
+            //serialPort.Open();
+            //ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+
             Run();
             //bool[] value = { true, false, false, false };
-            ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
             //var data= master.ReadInputs(10, 7999, 4);    // read inputs
             //var data = master.ReadCoils(10, 3999, 4);    // read Coil
-            //try
-            //{
-            //    //var data = master.ReadInputs(10, 7999, 4);    // read Coil
-            //    var data = master.ReadCoils(10, 3999, 4);
-            //    foreach (var item in data)      // read data
-            //    {
-            //        Console.WriteLine("{0}", item);    // dispaly data item
-            //    }
-            //}
-            //catch (Exception err)
-            //{
-            //    Console.WriteLine(err.Message);
-            //}
+            try
+            {
+                ushort[] writeData;
+                SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
+                serialPort.PortName = "COM4";
+                serialPort.BaudRate = 9600;
+                serialPort.DataBits = 8;
+                serialPort.Parity = Parity.None;
+                serialPort.StopBits = StopBits.One;
+                serialPort.Open();
+                ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort);
+
+                //var data = master.ReadInputs(10, 7999, 4);    // read Coil
+                var data = master.ReadCoils(10, 3999, 4);
+                foreach (var item in data)      // read data
+                {
+                    Console.WriteLine("{0}", item);    // dispaly data item
+                }
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+            }
 
 
             //bool[] data = { true, false, true, true };      // multiple file read karaychya asalyas tyala bool array of data pass karava lagto. true : on false : off
