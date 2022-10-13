@@ -75,7 +75,7 @@ namespace GUI_ModBus
           
             TimerCallback timeCB = new TimerCallback(PrintCoil);
             System.Threading.Timer t = new System.Threading.Timer(
-            timeCB,   // The TimerCallback delegate type.
+            timeCB,   // The TimerCallback delegate type. 
             "Hi",     // Any info to pass into the called method.
             0,        // Amount of time to wait before starting.
             3000);
@@ -84,9 +84,9 @@ namespace GUI_ModBus
         {
             TimerCallback timeCB = new TimerCallback(PrintInput);
             System.Threading.Timer t = new System.Threading.Timer(
-            timeCB,   // The TimerCallback delegate type.
-            "Hi",     // Any info to pass into the called method.
-            0,        // Amount of time to wait before starting.
+            timeCB, 
+            "Hi",    
+            0,      
             3000);
         }
 
@@ -97,21 +97,22 @@ namespace GUI_ModBus
             //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
             if (this.listView4.InvokeRequired)
             {
+                //Thread.Sleep(100);
                 CoilCount = 1;
                 InputCount = 1;
                 //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
                 foreach (var item in ReadCoilData)
                 {
                     listView4.Invoke((MethodInvoker)(() => listView4.Items.Add("Coil " + CoilCount + " " + item.ToString())));
-
                     CoilCount++;
                 }
+                
                 if (listView4.Items.Count >= 5)
                 {
                     listView4.Invoke((MethodInvoker)(() => listView4.Items.Clear()));
+                    
                     CoilCount = 1;
                 }
-
             }
 
         }
@@ -235,6 +236,7 @@ namespace GUI_ModBus
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
                 progressBar4.Value = 100;
                 AutoCoilStatus();
+                AutoInputStatus();
             }
             else
             {
@@ -385,8 +387,8 @@ namespace GUI_ModBus
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    autoCoilStatus = new Thread(AutoCoilStatus);
-                    autoInputStatus = new Thread(AutoInputStatus);
+                    autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+                    autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
                     autoCoilStatus.Start();
                     autoInputStatus.Start();
                     //AutoCoilStatus();       // Display automatic coil on off status
@@ -456,6 +458,7 @@ namespace GUI_ModBus
                 WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                 SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
                 AutoCoilStatus();
+                AutoInputStatus();
                 SingleCoilStatus = CheckSingleCoilStatus();
                 for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
                 {
@@ -579,7 +582,9 @@ namespace GUI_ModBus
                     {
                         //masterRtu.WriteMultipleCoils(SlaveId, Address, ONMultiCoil);        // ON all Coil
                         //CheckMultiCoilStatus();
+                        WriteMultiCoil = ReadCoilData;
                         OnMultiCoil();       // check coil position
+
                         //masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
                         //progressBar4.Value = 100;
                     }

@@ -116,7 +116,7 @@ namespace GUI_ModBus
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.listView4 = new System.Windows.Forms.ListView();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBoxAutoStatus = new System.Windows.Forms.GroupBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.listView5 = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
@@ -133,7 +133,7 @@ namespace GUI_ModBus
             this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
+            this.groupBoxAutoStatus.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1122,17 +1122,17 @@ namespace GUI_ModBus
             this.listView4.UseCompatibleStateImageBehavior = false;
             this.listView4.View = System.Windows.Forms.View.List;
             // 
-            // groupBox12
+            // groupBoxAutoStatus
             // 
-            this.groupBox12.Controls.Add(this.groupBox13);
-            this.groupBox12.Controls.Add(this.groupBox11);
-            this.groupBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox12.Location = new System.Drawing.Point(13, 665);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(870, 152);
-            this.groupBox12.TabIndex = 3;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Auto Update Coil  and Input Status";
+            this.groupBoxAutoStatus.Controls.Add(this.groupBox13);
+            this.groupBoxAutoStatus.Controls.Add(this.groupBox11);
+            this.groupBoxAutoStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxAutoStatus.Location = new System.Drawing.Point(13, 665);
+            this.groupBoxAutoStatus.Name = "groupBoxAutoStatus";
+            this.groupBoxAutoStatus.Size = new System.Drawing.Size(870, 152);
+            this.groupBoxAutoStatus.TabIndex = 3;
+            this.groupBoxAutoStatus.TabStop = false;
+            this.groupBoxAutoStatus.Text = "Auto Update Coil  and Input Status";
             // 
             // groupBox13
             // 
@@ -1161,7 +1161,7 @@ namespace GUI_ModBus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(906, 820);
-            this.Controls.Add(this.groupBox12);
+            this.Controls.Add(this.groupBoxAutoStatus);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
@@ -1198,7 +1198,7 @@ namespace GUI_ModBus
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox11.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
+            this.groupBoxAutoStatus.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1293,7 +1293,7 @@ namespace GUI_ModBus
         private System.Windows.Forms.CheckBox btncheckCoil1;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.ListView listView4;
-        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox groupBoxAutoStatus;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.ListView listView5;
     }
