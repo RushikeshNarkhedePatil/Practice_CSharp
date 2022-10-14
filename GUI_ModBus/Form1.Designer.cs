@@ -380,7 +380,7 @@ namespace GUI_ModBus
             this.groupMode.Controls.Add(this.btnRTU);
             this.groupMode.Location = new System.Drawing.Point(229, 22);
             this.groupMode.Name = "groupMode";
-            this.groupMode.Size = new System.Drawing.Size(151, 64);
+            this.groupMode.Size = new System.Drawing.Size(153, 64);
             this.groupMode.TabIndex = 5;
             this.groupMode.TabStop = false;
             this.groupMode.Text = "Mode";
@@ -389,7 +389,7 @@ namespace GUI_ModBus
             // 
             this.btnASCII.AutoSize = true;
             this.btnASCII.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnASCII.Location = new System.Drawing.Point(67, 25);
+            this.btnASCII.Location = new System.Drawing.Point(77, 27);
             this.btnASCII.Name = "btnASCII";
             this.btnASCII.Size = new System.Drawing.Size(59, 20);
             this.btnASCII.TabIndex = 0;
@@ -1160,7 +1160,7 @@ namespace GUI_ModBus
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(894, 820);
+            this.ClientSize = new System.Drawing.Size(905, 820);
             this.Controls.Add(this.groupBoxAutoStatus);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);

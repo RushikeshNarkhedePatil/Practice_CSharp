@@ -11,6 +11,8 @@ using System.IO.Ports;
 using Modbus.Device;
 using System.IO;
 using System.Threading;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace GUI_ModBus
 {
@@ -21,6 +23,7 @@ namespace GUI_ModBus
             InitializeComponent();
         }
         private Modbus.Device.IModbusSerialMaster masterRtu, masterAscii;
+        private Modbus.Device.ModbusIpMaster PLC;
         private byte SlaveId = 10;
         private ushort Address = 3999;      //7999 add kel hot adhi
         private ushort Quentity = 4;
@@ -39,6 +42,8 @@ namespace GUI_ModBus
         private TimerCallback timeCB;
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private Thread autoCoilStatus, autoInputStatus;
+        private TcpClient client;
+
         private bool CheckParity()
         {
             //MessageBox.Show(serialPort.DataBits.ToString());
@@ -101,7 +106,7 @@ namespace GUI_ModBus
                 timeCB,
                 "Hi",
                 0,
-                0);
+                1000);
             }
         
         }
@@ -114,7 +119,6 @@ namespace GUI_ModBus
                 //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
                 if (this.listView4.InvokeRequired)
                 {
-                    //Thread.Sleep(100);
                     CoilCount = 1;
                     InputCount = 1;
                     //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
@@ -256,8 +260,8 @@ namespace GUI_ModBus
                 DisplayMultiCoil();        
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
                 progressBar4.Value = 100;
-                AutoCoilStatus();
-                AutoInputStatus();
+                autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+                //autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
             }
             else
             {
@@ -287,7 +291,8 @@ namespace GUI_ModBus
                 }
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
                 DisplayMultiCoil();     // display result 
-                AutoCoilStatus();
+                autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+               // autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
             }
             else
             {
@@ -432,17 +437,56 @@ namespace GUI_ModBus
                 ParityStatus = CheckParity();
                 dataBitStatus = CheckDataBits();
                 // Check Mode
-                if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
+                if ((btnRTU.Checked == true) && (ParityStatus == true) && (dataBitStatus == "Rtu"))
                 //if ((btnRTU.Checked == true) && (ParityStatus == true))
                 {
                     OpenConRtu();
                 }
-                else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
+                else if ((btnASCII.Checked == true) && (ParityStatus == true) && (dataBitStatus == "Ascii"))
                 //else if ((btnASCII.Checked == true) && (ParityStatus == true))
                 {
                     OpenConAscii();
                 }
-                else if(dataBitStatus == "Rtu" || dataBitStatus == "Ascii")
+                //else if (btnTCP.Checked == true)
+                //{
+                //    int count = 0;
+                //    bool ConnectTCP = false;
+                //    string hostname=txtServer.Text;
+                //    int port=Convert.ToInt32(txtServer.Text);
+                //    try
+                //    {
+                //        while (!ConnectTCP && count < 5)
+                //        {
+                //            count++;
+                //            Ping ping1 = new Ping();
+                //            PingReply reply = ping1.Send(hostname, port);
+
+                //            if (reply.Status == IPStatus.Success)
+                //            {
+                //                ConnectTCP = true;
+                //            }
+                //        }
+
+                //        if (ConnectTCP == true)
+                //        {
+                //            if (ConnectTCP)
+                //            {
+                //                client = new System.Net.Sockets.TcpClient(hostname, port);
+                //                PLC = Modbus.Device.ModbusIpMaster.CreateIp(client);
+
+                //                PLC.WriteSingleCoil(8892, true);  // D700  Softwae Open signal for plc 1
+                //                //Thread Maintain_Socket = new Thread(new ThreadStart(Maintain_Connection));
+                //                //Maintain_Socket.Start();
+                //                //isPLC_Connected = true;
+                //            }
+                //        }
+                //    }
+                //    catch(Exception err)
+                //    {
+                //        MessageBox.Show(err.Message);
+                //    }
+                //}
+                else if (dataBitStatus == "Rtu" || dataBitStatus == "Ascii")
                 {
                     MessageBox.Show("Select Mode", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -483,78 +527,85 @@ namespace GUI_ModBus
         {
             try
             {
-                SlaveId = Convert.ToByte(txtWriteId.Text);
-                Address = Convert.ToUInt16(txtWriteAdd.Text);
-                WriteCoil = Convert.ToBoolean(txtWriteData.Text);
-                SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
-                AutoCoilStatus();
-                AutoInputStatus();
-                SingleCoilStatus = CheckSingleCoilStatus();
-                for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
+                if(serialPort.IsOpen)
                 {
-                    Address++;
-                }
-                //Address = Convert.ToUInt16(Address-1);
-                // check Mode
-                if(SingleCoilPosition==-1)          // filter
-                {
-                    MessageBox.Show("Please Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                //else if (SingleCoilStatus == true)     //fillter to check coil already on or not
-                //{
-                //    MessageBox.Show("Coil is already ON", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
-                else if (btnRTU.Checked==true)
-                {
-                    masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    if (btnOn.Checked==true)
+                    SlaveId = Convert.ToByte(txtWriteId.Text);
+                    Address = Convert.ToUInt16(txtWriteAdd.Text);
+                    WriteCoil = Convert.ToBoolean(txtWriteData.Text);
+                    SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
+                    autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+                    //autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
+                    SingleCoilStatus = CheckSingleCoilStatus();
+                    for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
                     {
-                        masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
-                        listView2.Items.Add(WriteCoil.ToString());
-                         //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
-                        progressBar3.Value = 100;
+                        Address++;
                     }
-                    else if(btnOff.Checked==true)
+                    //Address = Convert.ToUInt16(Address-1);
+                    // check Mode
+                    if (SingleCoilPosition == -1)          // filter
                     {
-                        masterRtu.WriteSingleCoil(SlaveId, Address, false);
-                        listView2.Items.Add("false");
-                        //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
-                        progressBar3.Value = 100;
+                        MessageBox.Show("Please Select Coil Position", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
                     }
-                    else
+                    //else if (SingleCoilStatus == true)     //fillter to check coil already on or not
+                    //{
+                    //    MessageBox.Show("Coil is already ON", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    else if (btnRTU.Checked == true)
                     {
-                        MessageBox.Show("Select On or Off option");
+                        masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
+                        if (btnOn.Checked == true)
+                        {
+                            masterRtu.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
+                            listView2.Items.Add(WriteCoil.ToString());
+                            //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
+                            progressBar3.Value = 100;
+                        }
+                        else if (btnOff.Checked == true)
+                        {
+                            masterRtu.WriteSingleCoil(SlaveId, Address, false);
+                            listView2.Items.Add("false");
+                            //listView2.Items.Add("Address : " + Address + " " + WriteCoil.ToString());
+                            progressBar3.Value = 100;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Select On or Off option");
+                        }
+                        btnSingleClear.Enabled = true;
                     }
-                    btnSingleClear.Enabled = true;
-                }
 
-                else if(btnASCII.Checked==true)
-                {
-                     masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
-                    //SlaveId = Convert.ToByte(txtWriteId.Text);
-                    //Address = Convert.ToUInt16(txtWriteAdd.Text);
-                    //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
-                    if (btnOn.Checked == true)
+                    else if (btnASCII.Checked == true)
                     {
-                        masterAscii.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
-                        
+                        masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                        //SlaveId = Convert.ToByte(txtWriteId.Text);
+                        //Address = Convert.ToUInt16(txtWriteAdd.Text);
+                        //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
+                        if (btnOn.Checked == true)
+                        {
+                            masterAscii.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
+
+                            listView2.Items.Add(WriteCoil.ToString());
+                            progressBar3.Value = 100;
+                        }
+                        else if (btnOff.Checked == true)
+                        {
+                            masterAscii.WriteSingleCoil(SlaveId, Address, false);    // off coil
+                        }
+                        else
+                        {
+                            MessageBox.Show("Select On or Off option");
+                        }
+                        //master.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
                         listView2.Items.Add(WriteCoil.ToString());
                         progressBar3.Value = 100;
                     }
-                    else if (btnOff.Checked == true)
-                    {
-                        masterAscii.WriteSingleCoil(SlaveId, Address, false);    // off coil
-                    }
-                    else
-                    {
-                        MessageBox.Show("Select On or Off option");
-                    }
-                    //master.WriteSingleCoil(SlaveId, Address, WriteCoil);        // write data
-                    listView2.Items.Add(WriteCoil.ToString());
-                    progressBar3.Value = 100;
                 }
-
+                else
+                {
+                    MessageBox.Show("Connection is not open", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+               
             }
             catch (Exception err)
             {
@@ -620,26 +671,28 @@ namespace GUI_ModBus
                     }
                     else if (btnMultiOff.Checked == true)       // off all coil
                     {
-                        DialogResult DialogResult = MessageBox.Show("Off all Coil", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-                        if(DialogResult==DialogResult.Yes)
-                        {
-                            // master.WriteMultipleCoils(SlaveId, Address, OffMultiCoil);        // Off all Coil
-                            OffMultiCoil();       // check coil position
-                            //int i = 0;
-                            //foreach (ListViewItem item in listView3.Items)
-                            //{
-                            //    var val = item.Text;
-                            //    WriteMultiCoil[i] = false;  
-                            //    i++;
-                            //}
-                            //masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
-                            //listView3.Items.Clear();        // Remove all items
-                            //progressBar4.Value = 0;
-                        }
-                        else
-                        {
+                        WriteMultiCoil = ReadCoilData;
+                        OffMultiCoil();       // check coil position
+                        //DialogResult DialogResult = MessageBox.Show("Off all Coil", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                        //if(DialogResult==DialogResult.Yes)
+                        //{
+                        //    // master.WriteMultipleCoils(SlaveId, Address, OffMultiCoil);        // Off all Coil
+                        //    OffMultiCoil();       // check coil position
+                        //    //int i = 0;
+                        //    //foreach (ListViewItem item in listView3.Items)
+                        //    //{
+                        //    //    var val = item.Text;
+                        //    //    WriteMultiCoil[i] = false;  
+                        //    //    i++;
+                        //    //}
+                        //    //masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
+                        //    //listView3.Items.Clear();        // Remove all items
+                        //    //progressBar4.Value = 0;
+                        //}
+                        //else
+                        //{
 
-                        }
+                        //}
                     }
                     else
                     {
