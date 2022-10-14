@@ -36,6 +36,7 @@ namespace GUI_ModBus
         private bool[] ONMultiCoil = { true, true, true, true };
         private bool[] ReadCoilData = { false, false, false, false };
         private bool[] ReadInputData = { false, false, false, false };
+        private TimerCallback timeCB;
         private SerialPort serialPort = new SerialPort(); //Create a new SerialPort object.
         private Thread autoCoilStatus, autoInputStatus;
         private bool CheckParity()
@@ -55,11 +56,20 @@ namespace GUI_ModBus
         private string CheckDataBits()
         {
             var dataBits = serialPort.DataBits.ToString();    // check data bit 
-            if(dataBits=="8")
+        
+            if(dataBits=="8"&& btnASCII.Checked==true)
+            {
+                MessageBox.Show("Not Supported Please Check dataBit OR Mode of Communication","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else if(dataBits=="7" && btnRTU.Checked==true)
+            {
+                MessageBox.Show("Not Supported Please Check dataBit OR Mode of Communication","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else if (dataBits == "8")
             {
                 return "Rtu";
             }
-            else if(dataBits=="7")
+            else if (dataBits == "7")
             {
                 return "Ascii";
             }
@@ -72,76 +82,87 @@ namespace GUI_ModBus
         //add for testing and display result continueosly on Screen
         private void AutoCoilStatus()
         {
-          
-            TimerCallback timeCB = new TimerCallback(PrintCoil);
-            System.Threading.Timer t = new System.Threading.Timer(
-            timeCB,   // The TimerCallback delegate type. 
-            "Hi",     // Any info to pass into the called method.
-            0,        // Amount of time to wait before starting.
-            3000);
+            if(serialPort.IsOpen)
+            {
+                timeCB = new TimerCallback(PrintCoil);
+                System.Threading.Timer t = new System.Threading.Timer(
+                timeCB,   // The TimerCallback delegate type. 
+                "Hi",     // Any info to pass into the called method.
+                0,        // Amount of time to wait before starting.
+                3000);
+            }
         }
         private void AutoInputStatus()
         {
-            TimerCallback timeCB = new TimerCallback(PrintInput);
-            System.Threading.Timer t = new System.Threading.Timer(
-            timeCB, 
-            "Hi",    
-            0,      
-            3000);
+            if(serialPort.IsOpen)
+            {
+                timeCB = new TimerCallback(PrintInput);
+                System.Threading.Timer t = new System.Threading.Timer(
+                timeCB,
+                "Hi",
+                0,
+                0);
+            }
+        
         }
 
         void PrintCoil(object state)
         {
-            ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
-            
-            //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
-            if (this.listView4.InvokeRequired)
+            if(serialPort.IsOpen)
             {
-                //Thread.Sleep(100);
-                CoilCount = 1;
-                InputCount = 1;
-                //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
-                foreach (var item in ReadCoilData)
+                ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
+                //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
+                if (this.listView4.InvokeRequired)
                 {
-                    listView4.Invoke((MethodInvoker)(() => listView4.Items.Add("Coil " + CoilCount + " " + item.ToString())));
-                    CoilCount++;
-                }
-                
-                if (listView4.Items.Count >= 5)
-                {
-                    listView4.Invoke((MethodInvoker)(() => listView4.Items.Clear()));
-                    
+                    //Thread.Sleep(100);
                     CoilCount = 1;
+                    InputCount = 1;
+                    //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+                    foreach (var item in ReadCoilData)
+                    {
+                        listView4.Invoke((MethodInvoker)(() => listView4.Items.Add("Coil " + CoilCount + " " + item.ToString())));
+                        CoilCount++;
+                    }
+
+                    if (listView4.Items.Count >= 5)
+                    {
+                        listView4.Invoke((MethodInvoker)(() => listView4.Items.Clear()));
+
+                        CoilCount = 1;
+                    }
                 }
             }
-
         }
 
         void PrintInput(object state)
         {
-            ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
-            if (this.listView5.InvokeRequired)
+            if(serialPort.IsOpen)
             {
-                InputCount = 1;
-                //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
-                foreach (var item in ReadInputData)
+                ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+                if (this.listView5.InvokeRequired)
                 {
-                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Add("Input " + InputCount + " " + item.ToString())));
-
-                    InputCount++;
-                }
-                if (listView5.Items.Count >= 5)
-                {
-                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
-                    CoilCount = 1;
-                }
-                if (listView5.Items.Count >= 5)
-                {
-                    listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
                     InputCount = 1;
-                }
+                    //ReadCoilData = masterRtu.ReadCoils(SlaveId, Address, Quentity);
+                    foreach (var item in ReadInputData)
+                    {
+                        listView5.Invoke((MethodInvoker)(() => listView5.Items.Add("Input " + InputCount + " " + item.ToString())));
 
-            }
+                        InputCount++;
+                    }
+                    if (listView5.Items.Count >= 5)
+                    {
+                        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+                        CoilCount = 1;
+                    }
+                    if (listView5.Items.Count >= 5)
+                    {
+                        listView5.Invoke((MethodInvoker)(() => listView5.Items.Clear()));
+                        InputCount = 1;
+                    }
+
+                }
+            }  
+            
         }
         //end 
         private bool CheckSingleCoilStatus()
@@ -409,22 +430,26 @@ namespace GUI_ModBus
                 serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
                 serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
                 ParityStatus = CheckParity();
-                //dataBitStatus = CheckDataBits();
+                dataBitStatus = CheckDataBits();
                 // Check Mode
-                //if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
-                if ((btnRTU.Checked == true) && (ParityStatus == true))
+                if ((btnRTU.Checked==true)&&(ParityStatus==true)&&(dataBitStatus=="Rtu"))
+                //if ((btnRTU.Checked == true) && (ParityStatus == true))
                 {
                     OpenConRtu();
                 }
-                //else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
-                else if ((btnASCII.Checked == true) && (ParityStatus == true))
+                else if((btnASCII.Checked==true) && (ParityStatus == true) && (dataBitStatus =="Ascii"))
+                //else if ((btnASCII.Checked == true) && (ParityStatus == true))
                 {
                     OpenConAscii();
                 }
-                else
+                else if(dataBitStatus == "Rtu" || dataBitStatus == "Ascii")
                 {
-                    MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Select Mode", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                //else
+                //{
+                //    MessageBox.Show("Select Mode","Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                //}
             }
             catch (Exception ex)
             {
@@ -434,13 +459,18 @@ namespace GUI_ModBus
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if(serialPort.IsOpen)
+            
+            if (serialPort.IsOpen)
             {
                 serialPort.Close();
                 //MessageBox.Show("Connection is Close");
                 progressBar1.Value = 0;
                 this.btnClose.Enabled = false;
                 this.btnOpen.Enabled = true;
+                autoCoilStatus.Abort();
+                autoInputStatus.Abort();
+                listView4.Clear();
+                listView5.Clear();
             }
             else
             {

@@ -380,7 +380,7 @@ namespace GUI_ModBus
             this.groupMode.Controls.Add(this.btnRTU);
             this.groupMode.Location = new System.Drawing.Point(229, 22);
             this.groupMode.Name = "groupMode";
-            this.groupMode.Size = new System.Drawing.Size(153, 59);
+            this.groupMode.Size = new System.Drawing.Size(151, 64);
             this.groupMode.TabIndex = 5;
             this.groupMode.TabStop = false;
             this.groupMode.Text = "Mode";
@@ -1160,7 +1160,7 @@ namespace GUI_ModBus
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(906, 820);
+            this.ClientSize = new System.Drawing.Size(894, 820);
             this.Controls.Add(this.groupBoxAutoStatus);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
