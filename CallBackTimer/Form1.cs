@@ -43,23 +43,7 @@ namespace CallBackTimer
         //}
         private void Form1_Load(object sender, EventArgs e)
         {
-            TimerCallback timeCB = new TimerCallback(PrintTime);
-            System.Threading.Timer t = new System.Threading.Timer(
-           timeCB,   // The TimerCallback delegate type.
-           "Hi",     // Any info to pass into the called method.
-           0,        // Amount of time to wait before starting.
-           1000);    // Interval of time between calls. 
-
-            void PrintTime(object state)
-            {
-                //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
-                if (this.textBox1.InvokeRequired)
-                {
-                    textBox1.Invoke((MethodInvoker)(() => textBox1.Text = "Jay Ganesh"));
-                    listView1.Invoke((MethodInvoker)(() => listView1.Items.Add(DateTime.Now.ToLongTimeString())));
-                }
-
-            }
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,6 +54,22 @@ namespace CallBackTimer
         private void btnDisplay_Click(object sender, EventArgs e)
         {
        
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if(txtUser.Text=="Rushi"&& txtPassword.Text=="Rushi@123")
+            {
+                this.Hide();
+                Form2 form2 = new Form2();
+                form2.Show();
+                MessageBox.Show("Sucess");
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            groupBox1.Text.
         }
     }
 }

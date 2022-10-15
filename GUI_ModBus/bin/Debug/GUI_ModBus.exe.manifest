@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GUI_ModBus.exe" size="39904">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GUI_ModBus.exe" size="40416">
       <assemblyIdentity name="GUI_ModBus" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JyEretbS4HgmbSgflIOWVQpkXMceE/xC5iz6S3Ja9+M=</dsig:DigestValue>
+        <dsig:DigestValue>x+1exicJNx/hlEEdLPqKdNv0kImqWogBZYMxRkFvU3c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -51,6 +51,7 @@ namespace GUI_ModBus
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupMode = new System.Windows.Forms.GroupBox();
             this.btnASCII = new System.Windows.Forms.RadioButton();
+            this.btnTCP = new System.Windows.Forms.RadioButton();
             this.btnRTU = new System.Windows.Forms.RadioButton();
             this.combParitybit = new System.Windows.Forms.ComboBox();
             this.combStopBit = new System.Windows.Forms.ComboBox();
@@ -377,10 +378,11 @@ namespace GUI_ModBus
             // groupMode
             // 
             this.groupMode.Controls.Add(this.btnASCII);
+            this.groupMode.Controls.Add(this.btnTCP);
             this.groupMode.Controls.Add(this.btnRTU);
             this.groupMode.Location = new System.Drawing.Point(229, 22);
             this.groupMode.Name = "groupMode";
-            this.groupMode.Size = new System.Drawing.Size(153, 64);
+            this.groupMode.Size = new System.Drawing.Size(153, 53);
             this.groupMode.TabIndex = 5;
             this.groupMode.TabStop = false;
             this.groupMode.Text = "Mode";
@@ -396,6 +398,19 @@ namespace GUI_ModBus
             this.btnASCII.TabStop = true;
             this.btnASCII.Text = "ASCII";
             this.btnASCII.UseVisualStyleBackColor = true;
+            // 
+            // btnTCP
+            // 
+            this.btnTCP.AutoSize = true;
+            this.btnTCP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTCP.Location = new System.Drawing.Point(6, 56);
+            this.btnTCP.Name = "btnTCP";
+            this.btnTCP.Size = new System.Drawing.Size(53, 20);
+            this.btnTCP.TabIndex = 0;
+            this.btnTCP.TabStop = true;
+            this.btnTCP.Text = "TCP";
+            this.btnTCP.UseVisualStyleBackColor = true;
+            this.btnTCP.Visible = false;
             // 
             // btnRTU
             // 
@@ -600,7 +615,7 @@ namespace GUI_ModBus
             this.groupBox9.Size = new System.Drawing.Size(168, 68);
             this.groupBox9.TabIndex = 2;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Select Coil Position ";
+            this.groupBox9.Text = "Select Coil Number";
             // 
             // btnCoil4
             // 
@@ -875,7 +890,7 @@ namespace GUI_ModBus
             this.groupBox10.Size = new System.Drawing.Size(166, 74);
             this.groupBox10.TabIndex = 3;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Select Coil Position";
+            this.groupBox10.Text = "Select Coil Number";
             // 
             // btncheckCoil4
             // 
@@ -1296,6 +1311,7 @@ namespace GUI_ModBus
         private System.Windows.Forms.GroupBox groupBoxAutoStatus;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.ListView listView5;
+        private System.Windows.Forms.RadioButton btnTCP;
     }
 }
 

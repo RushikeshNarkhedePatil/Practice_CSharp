@@ -44,6 +44,47 @@ namespace GUI_ModBus
         private Thread autoCoilStatus, autoInputStatus;
         private TcpClient client;
 
+        private void tcpTest()
+        {
+            int count = 0;
+            bool ConnectTCP = false;
+            string hostname ="localhost";
+            int port = 502;
+            try
+            {
+                while (!ConnectTCP && count < 5)
+                {
+                    count++;
+                    Ping ping1 = new Ping();
+                    PingReply reply = ping1.Send(hostname, port);
+
+                    if (reply.Status == IPStatus.Success)
+                    {
+                        ConnectTCP = true;
+                    }
+                }
+
+                if (ConnectTCP == true)
+                {
+                   
+                    if (ConnectTCP)
+                    {
+                        client = new System.Net.Sockets.TcpClient(hostname, port);
+                        PLC = Modbus.Device.ModbusIpMaster.CreateIp(client);
+                        MessageBox.Show("Connected");
+
+                        PLC.WriteSingleCoil(8892, true);  // D700  Softwae Open signal for plc 1
+                                                          //Thread Maintain_Socket = new Thread(new ThreadStart(Maintain_Connection));
+                                                          //Maintain_Socket.Start();
+                                                          //isPLC_Connected = true;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
         private bool CheckParity()
         {
             //MessageBox.Show(serialPort.DataBits.ToString());
@@ -87,7 +128,7 @@ namespace GUI_ModBus
         //add for testing and display result continueosly on Screen
         private void AutoCoilStatus()
         {
-            if(serialPort.IsOpen)
+            if (serialPort.IsOpen)
             {
                 timeCB = new TimerCallback(PrintCoil);
                 System.Threading.Timer t = new System.Threading.Timer(
@@ -99,21 +140,21 @@ namespace GUI_ModBus
         }
         private void AutoInputStatus()
         {
-            if(serialPort.IsOpen)
+            if (serialPort.IsOpen)
             {
                 timeCB = new TimerCallback(PrintInput);
                 System.Threading.Timer t = new System.Threading.Timer(
                 timeCB,
                 "Hi",
                 0,
-                1000);
+                3000);
             }
-        
+
         }
 
         void PrintCoil(object state)
         {
-            if(serialPort.IsOpen)
+            if (serialPort.IsOpen)
             {
                 ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
                 //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
@@ -260,7 +301,7 @@ namespace GUI_ModBus
                 DisplayMultiCoil();        
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);
                 progressBar4.Value = 100;
-                autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+                AutoCoilStatus();
                 //autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
             }
             else
@@ -291,8 +332,8 @@ namespace GUI_ModBus
                 }
                 masterRtu.WriteMultipleCoils(SlaveId, Address, WriteMultiCoil);        // Off all Coil
                 DisplayMultiCoil();     // display result 
-                autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
-               // autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
+                AutoCoilStatus();
+                // autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
             }
             else
             {
@@ -413,11 +454,12 @@ namespace GUI_ModBus
                     progressBar1.Value = 100;
                     this.btnOpen.Enabled = false;
                     masterRtu = ModbusSerialMaster.CreateRtu(serialPort);
-                    autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
-                    autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
-                    autoCoilStatus.Start();
-                    autoInputStatus.Start();
-                    //AutoCoilStatus();       // Display automatic coil on off status
+                    //autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
+                    //autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
+                    //autoCoilStatus.Start();
+                    //autoInputStatus.Start();
+                    AutoCoilStatus();       // Display automatic coil on off status
+                    AutoInputStatus();
                 }
                 catch (Exception err)
                 {
@@ -447,45 +489,10 @@ namespace GUI_ModBus
                 {
                     OpenConAscii();
                 }
-                //else if (btnTCP.Checked == true)
-                //{
-                //    int count = 0;
-                //    bool ConnectTCP = false;
-                //    string hostname=txtServer.Text;
-                //    int port=Convert.ToInt32(txtServer.Text);
-                //    try
-                //    {
-                //        while (!ConnectTCP && count < 5)
-                //        {
-                //            count++;
-                //            Ping ping1 = new Ping();
-                //            PingReply reply = ping1.Send(hostname, port);
-
-                //            if (reply.Status == IPStatus.Success)
-                //            {
-                //                ConnectTCP = true;
-                //            }
-                //        }
-
-                //        if (ConnectTCP == true)
-                //        {
-                //            if (ConnectTCP)
-                //            {
-                //                client = new System.Net.Sockets.TcpClient(hostname, port);
-                //                PLC = Modbus.Device.ModbusIpMaster.CreateIp(client);
-
-                //                PLC.WriteSingleCoil(8892, true);  // D700  Softwae Open signal for plc 1
-                //                //Thread Maintain_Socket = new Thread(new ThreadStart(Maintain_Connection));
-                //                //Maintain_Socket.Start();
-                //                //isPLC_Connected = true;
-                //            }
-                //        }
-                //    }
-                //    catch(Exception err)
-                //    {
-                //        MessageBox.Show(err.Message);
-                //    }
-                //}
+                else if (btnTCP.Checked == true)
+                {
+                    tcpTest();
+                }
                 else if (dataBitStatus == "Rtu" || dataBitStatus == "Ascii")
                 {
                     MessageBox.Show("Select Mode", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -511,8 +518,6 @@ namespace GUI_ModBus
                 progressBar1.Value = 0;
                 this.btnClose.Enabled = false;
                 this.btnOpen.Enabled = true;
-                autoCoilStatus.Abort();
-                autoInputStatus.Abort();
                 listView4.Clear();
                 listView5.Clear();
             }
@@ -533,8 +538,7 @@ namespace GUI_ModBus
                     Address = Convert.ToUInt16(txtWriteAdd.Text);
                     WriteCoil = Convert.ToBoolean(txtWriteData.Text);
                     SingleCoilPosition = CheckSingleCoilPosition();     // check coil position status
-                    autoCoilStatus = new Thread(new ThreadStart(AutoCoilStatus));
-                    //autoInputStatus = new Thread(new ThreadStart(AutoInputStatus));
+                    AutoCoilStatus();
                     SingleCoilStatus = CheckSingleCoilStatus();
                     for (int i = 0; i < SingleCoilPosition; i++)        // find coil position
                     {
