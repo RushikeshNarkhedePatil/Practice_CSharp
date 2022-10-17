@@ -156,7 +156,28 @@ namespace GUI_ModBus
         {
             if (serialPort.IsOpen)
             {
-                ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
+                if(btnRTU.Checked==true)
+                {
+                    ReadCoilData = masterRtu.ReadCoils(SlaveId, 3999, Quentity);
+                }
+                else if(btnASCII.Checked==true)
+                {
+                    try
+                    {
+                        ReadCoilData = masterAscii.ReadCoils(SlaveId, 3999, Quentity);
+                    }
+                    catch (Exception)
+                    {
+                        serialPort.Close();
+                        if(progressBar1.InvokeRequired)
+                        {
+                            progressBar1.Invoke((MethodInvoker)(() => progressBar1.Value = 0));
+                        }
+                       
+                    }
+                    
+                    
+                }
                 //Console.WriteLine("Time is: {0}, Param is: {1}", DateTime.Now.ToLongTimeString(), state.ToString());
                 if (this.listView4.InvokeRequired)
                 {
@@ -183,7 +204,15 @@ namespace GUI_ModBus
         {
             if(serialPort.IsOpen)
             {
-                ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+                if(btnRTU.Checked==true)
+                {
+                    ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+                }
+                else
+                {
+                    ReadInputData =masterAscii.ReadInputs(SlaveId, 7999, Quentity);
+                }
+                
                 if (this.listView5.InvokeRequired)
                 {
                     InputCount = 1;
@@ -408,6 +437,11 @@ namespace GUI_ModBus
                     }
                     catch (Exception err)
                     {
+                        if(err.Message== "The operation has timed out.")
+                        {
+                            MessageBox.Show("ASCII Mode is Not Supported for this device", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 
@@ -476,10 +510,12 @@ namespace GUI_ModBus
                 serialPort.DataBits = Convert.ToInt32(txtDataBit.Text);
                 serialPort.Parity = (Parity)Enum.Parse(typeof(Parity), combParitybit.Text);
                 serialPort.StopBits = (StopBits)Enum.Parse(typeof(StopBits), combStopBit.Text);
+                serialPort.ReadTimeout = 1000;      //dealy timeout
+                serialPort.WriteTimeout = 1000;
                 ParityStatus = CheckParity();
                 dataBitStatus = CheckDataBits();
                 // Check Mode
-                if ((btnRTU.Checked == true) && (ParityStatus == true) && (dataBitStatus == "Rtu"))
+                if ((btnRTU.Checked == true) && (ParityStatus == true)  && (dataBitStatus == "Rtu"))
                 //if ((btnRTU.Checked == true) && (ParityStatus == true))
                 {
                     OpenConRtu();
@@ -492,6 +528,10 @@ namespace GUI_ModBus
                 else if (btnTCP.Checked == true)
                 {
                     tcpTest();
+                }
+                else if(ParityStatus==false)
+                {
+                    return;
                 }
                 else if (dataBitStatus == "Rtu" || dataBitStatus == "Ascii")
                 {
@@ -581,7 +621,15 @@ namespace GUI_ModBus
 
                     else if (btnASCII.Checked == true)
                     {
-                        masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                        try
+                        {
+                            masterAscii = ModbusSerialMaster.CreateAscii(serialPort);
+                        }
+                        catch (Exception err)
+                        {
+                            return;
+                        }
+                       
                         //SlaveId = Convert.ToByte(txtWriteId.Text);
                         //Address = Convert.ToUInt16(txtWriteAdd.Text);
                         //WriteCoil = Convert.ToBoolean(txtWriteData.Text);
@@ -613,6 +661,11 @@ namespace GUI_ModBus
             }
             catch (Exception err)
             {
+                if (err.Message == "The operation has timed out.")
+                {
+                    MessageBox.Show("ASCII Mode is Not Supported for this device", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
