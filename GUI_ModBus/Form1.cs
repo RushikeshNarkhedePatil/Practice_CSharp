@@ -206,11 +206,34 @@ namespace GUI_ModBus
             {
                 if(btnRTU.Checked==true)
                 {
-                    ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+                    try
+                    {
+                        ReadInputData = masterRtu.ReadInputs(SlaveId, 7999, Quentity);
+                    }
+                    catch (Exception err)
+                    {
+                        serialPort.Close();
+                        if (progressBar1.InvokeRequired)
+                        {
+                            progressBar1.Invoke((MethodInvoker)(() => progressBar1.Value = 0));
+                        }
+                    }
                 }
                 else
                 {
-                    ReadInputData =masterAscii.ReadInputs(SlaveId, 7999, Quentity);
+                    try
+                    {
+                        ReadInputData = masterAscii.ReadInputs(SlaveId, 7999, Quentity);
+                    }
+                    catch (Exception err)
+                    {
+                        serialPort.Close();
+                        if (progressBar1.InvokeRequired)
+                        {
+                            progressBar1.Invoke((MethodInvoker)(() => progressBar1.Value = 0));
+                        }
+                    }
+                   
                 }
                 
                 if (this.listView5.InvokeRequired)

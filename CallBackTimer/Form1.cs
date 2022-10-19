@@ -69,7 +69,7 @@ namespace CallBackTimer
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            groupBox1.Text.
+            //groupBox1.Text.
         }
     }
 }

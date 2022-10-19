@@ -1,0 +1,7 @@
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\PracticeWPF.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\Views\StudentView.g.cs
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\PracticeWPF_MarkupCompile.cache
+C:\Users\varad\source\repos\PracticeDotNet\PracticeWPF\obj\Debug\netcoreapp3.1\PracticeWPF_MarkupCompile.lref

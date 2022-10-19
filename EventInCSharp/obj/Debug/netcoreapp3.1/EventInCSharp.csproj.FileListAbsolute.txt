@@ -1,0 +1,14 @@
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.exe
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.deps.json
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.runtimeconfig.json
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.runtimeconfig.dev.json
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.dll
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\bin\Debug\netcoreapp3.1\EventInCSharp.pdb
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.AssemblyInfoInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.AssemblyInfo.cs
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.dll
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.pdb
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.genruntimeconfig.cache
+C:\Users\varad\source\repos\PracticeDotNet\EventInCSharp\obj\Debug\netcoreapp3.1\EventInCSharp.csproj.AssemblyReference.cache
