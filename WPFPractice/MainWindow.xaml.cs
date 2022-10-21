@@ -27,6 +27,7 @@ namespace WPFPractice
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            btnAdd.Background = Brushes.LightBlue;
             if (!string.IsNullOrWhiteSpace(txtName.Text) && !lstNames.Items.Contains(txtName.Text))
             {
                 lstNames.Items.Add(txtName.Text);

@@ -24,7 +24,8 @@
             <ListBox Grid.Row="1" x:Name="lstNames" />
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
                 <TextBox x:Name="txtName" />
-                <Button x:Name="btnAdd" Margin="0,5,0,0" Click="btnAdd_Click">Add Name</Button>
+                <Button x:Name="btnAdd" Margin="0,5,0,0" Click="btnAdd_Click"  BorderBrush="Black" BorderThickness="1" ClickMode="Hover">Add Name </Button>
+                
             </StackPanel>
 
         </Grid>
