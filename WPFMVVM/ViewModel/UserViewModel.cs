@@ -14,9 +14,9 @@ namespace WPFMVVM.ViewModel
         {
             _UsersList = new List<User>
             {
-                new User{UserId = 1,FirstName="Raj",LastName="Beniwal",City="Delhi",State="DEL",Country="INDIA"},
-                new User{UserId=2,FirstName="Mark",LastName="henry",City="New York", State="NY", Country="USA"},
-                new User{UserId=3,FirstName="Mahesh",LastName="Chand",City="Philadelphia", State="PHL", Country="USA"},
+                new User{UserId = 1,FirstName="Rajesh",LastName="Patil",City="Pune",State="Maharashtra",Country="INDIA"},
+                new User{UserId=2,FirstName="Pavan",LastName="henry",City="New York", State="NY", Country="USA"},
+                new User{UserId=3,FirstName="Kunal",LastName="Chand",City="Philadelphia", State="PHL", Country="USA"},
                 new User{UserId=4,FirstName="Vikash",LastName="Nanda",City="Noida", State="UP", Country="INDIA"},
                 new User{UserId=5,FirstName="Harsh",LastName="Kumar",City="Ghaziabad", State="UP", Country="INDIA"},
                 new User{UserId=6,FirstName="Reetesh",LastName="Tomar",City="Mumbai", State="MP", Country="INDIA"},
