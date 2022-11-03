@@ -1,0 +1,13 @@
+﻿<Window x:Class="SimpleWPF.View.MainWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleWPF.View"
+        mc:Ignorable="d"
+        Title="MainWin" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="txtName" HorizontalAlignment="Center" Margin="0,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="30" RenderTransformOrigin="0.444,0.668" Text = "{Binding Name, Mode = OneWay}"/>
+        
+    </Grid>
+</Window>
