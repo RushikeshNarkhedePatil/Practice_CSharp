@@ -854,6 +854,11 @@ namespace GUI_ModBus
             progressBar2.Value = 0;
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnSingleClear_Click(object sender, EventArgs e)
         {
             listView2.Items.Clear();

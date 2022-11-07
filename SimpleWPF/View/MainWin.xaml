@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWin" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="txtName" HorizontalAlignment="Center" Margin="0,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="30" RenderTransformOrigin="0.444,0.668" Text = "{Binding Name, Mode = OneWay}"/>
-        
+        <StackPanel>
+            <Button Content="Click Me"/>
+            <TextBox Text="Hello"/>
+        </StackPanel>
+
     </Grid>
 </Window>
