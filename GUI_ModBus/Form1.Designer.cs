@@ -51,6 +51,7 @@ namespace GUI_ModBus
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupMode = new System.Windows.Forms.GroupBox();
             this.btnASCII = new System.Windows.Forms.RadioButton();
+            this.btnTCP = new System.Windows.Forms.RadioButton();
             this.btnRTU = new System.Windows.Forms.RadioButton();
             this.combParitybit = new System.Windows.Forms.ComboBox();
             this.combStopBit = new System.Windows.Forms.ComboBox();
@@ -69,6 +70,10 @@ namespace GUI_ModBus
             this.btnSingleClear = new System.Windows.Forms.Button();
             this.groupValue = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.btnCoil4 = new System.Windows.Forms.RadioButton();
+            this.btnCoil2 = new System.Windows.Forms.RadioButton();
+            this.btnCoil3 = new System.Windows.Forms.RadioButton();
+            this.btnCoil1 = new System.Windows.Forms.RadioButton();
             this.btnOff = new System.Windows.Forms.RadioButton();
             this.btnOn = new System.Windows.Forms.RadioButton();
             this.btnWriteSingleCoil = new System.Windows.Forms.Button();
@@ -88,6 +93,11 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple = new System.Windows.Forms.GroupBox();
             this.combWriteMulti = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btncheckCoil4 = new System.Windows.Forms.CheckBox();
+            this.btncheckCoil2 = new System.Windows.Forms.CheckBox();
+            this.btncheckCoil3 = new System.Windows.Forms.CheckBox();
+            this.btncheckCoil1 = new System.Windows.Forms.CheckBox();
             this.btnMultiOnOff = new System.Windows.Forms.RadioButton();
             this.btnMultiOff = new System.Windows.Forms.RadioButton();
             this.btnMultiOn = new System.Windows.Forms.RadioButton();
@@ -105,15 +115,11 @@ namespace GUI_ModBus
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnCoil1 = new System.Windows.Forms.RadioButton();
-            this.btnCoil2 = new System.Windows.Forms.RadioButton();
-            this.btnCoil4 = new System.Windows.Forms.RadioButton();
-            this.btnCoil3 = new System.Windows.Forms.RadioButton();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.btncheckCoil1 = new System.Windows.Forms.CheckBox();
-            this.btncheckCoil2 = new System.Windows.Forms.CheckBox();
-            this.btncheckCoil4 = new System.Windows.Forms.CheckBox();
-            this.btncheckCoil3 = new System.Windows.Forms.CheckBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.listView4 = new System.Windows.Forms.ListView();
+            this.groupBoxAutoStatus = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.listView5 = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -125,8 +131,11 @@ namespace GUI_ModBus
             this.groupBox5.SuspendLayout();
             this.GroupBoxWriteMultiple.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBoxAutoStatus.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -369,10 +378,11 @@ namespace GUI_ModBus
             // groupMode
             // 
             this.groupMode.Controls.Add(this.btnASCII);
+            this.groupMode.Controls.Add(this.btnTCP);
             this.groupMode.Controls.Add(this.btnRTU);
             this.groupMode.Location = new System.Drawing.Point(229, 22);
             this.groupMode.Name = "groupMode";
-            this.groupMode.Size = new System.Drawing.Size(153, 59);
+            this.groupMode.Size = new System.Drawing.Size(153, 53);
             this.groupMode.TabIndex = 5;
             this.groupMode.TabStop = false;
             this.groupMode.Text = "Mode";
@@ -381,13 +391,26 @@ namespace GUI_ModBus
             // 
             this.btnASCII.AutoSize = true;
             this.btnASCII.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnASCII.Location = new System.Drawing.Point(67, 25);
+            this.btnASCII.Location = new System.Drawing.Point(77, 27);
             this.btnASCII.Name = "btnASCII";
             this.btnASCII.Size = new System.Drawing.Size(59, 20);
             this.btnASCII.TabIndex = 0;
             this.btnASCII.TabStop = true;
             this.btnASCII.Text = "ASCII";
             this.btnASCII.UseVisualStyleBackColor = true;
+            // 
+            // btnTCP
+            // 
+            this.btnTCP.AutoSize = true;
+            this.btnTCP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTCP.Location = new System.Drawing.Point(6, 56);
+            this.btnTCP.Name = "btnTCP";
+            this.btnTCP.Size = new System.Drawing.Size(53, 20);
+            this.btnTCP.TabIndex = 0;
+            this.btnTCP.TabStop = true;
+            this.btnTCP.Text = "TCP";
+            this.btnTCP.UseVisualStyleBackColor = true;
+            this.btnTCP.Visible = false;
             // 
             // btnRTU
             // 
@@ -549,7 +572,7 @@ namespace GUI_ModBus
             this.groupBox4.Controls.Add(this.lblWriteAddress);
             this.groupBox4.Controls.Add(this.lblWriteId);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 319);
+            this.groupBox4.Location = new System.Drawing.Point(21, 311);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(399, 348);
             this.groupBox4.TabIndex = 0;
@@ -592,7 +615,55 @@ namespace GUI_ModBus
             this.groupBox9.Size = new System.Drawing.Size(168, 68);
             this.groupBox9.TabIndex = 2;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Select Coil Position ";
+            this.groupBox9.Text = "Select Coil Number";
+            // 
+            // btnCoil4
+            // 
+            this.btnCoil4.AutoSize = true;
+            this.btnCoil4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoil4.Location = new System.Drawing.Point(71, 48);
+            this.btnCoil4.Name = "btnCoil4";
+            this.btnCoil4.Size = new System.Drawing.Size(56, 20);
+            this.btnCoil4.TabIndex = 0;
+            this.btnCoil4.TabStop = true;
+            this.btnCoil4.Text = "Coil4";
+            this.btnCoil4.UseVisualStyleBackColor = true;
+            // 
+            // btnCoil2
+            // 
+            this.btnCoil2.AutoSize = true;
+            this.btnCoil2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoil2.Location = new System.Drawing.Point(71, 21);
+            this.btnCoil2.Name = "btnCoil2";
+            this.btnCoil2.Size = new System.Drawing.Size(56, 20);
+            this.btnCoil2.TabIndex = 0;
+            this.btnCoil2.TabStop = true;
+            this.btnCoil2.Text = "Coil2";
+            this.btnCoil2.UseVisualStyleBackColor = true;
+            // 
+            // btnCoil3
+            // 
+            this.btnCoil3.AutoSize = true;
+            this.btnCoil3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoil3.Location = new System.Drawing.Point(9, 47);
+            this.btnCoil3.Name = "btnCoil3";
+            this.btnCoil3.Size = new System.Drawing.Size(56, 20);
+            this.btnCoil3.TabIndex = 0;
+            this.btnCoil3.TabStop = true;
+            this.btnCoil3.Text = "Coil3";
+            this.btnCoil3.UseVisualStyleBackColor = true;
+            // 
+            // btnCoil1
+            // 
+            this.btnCoil1.AutoSize = true;
+            this.btnCoil1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoil1.Location = new System.Drawing.Point(9, 21);
+            this.btnCoil1.Name = "btnCoil1";
+            this.btnCoil1.Size = new System.Drawing.Size(56, 20);
+            this.btnCoil1.TabIndex = 0;
+            this.btnCoil1.TabStop = true;
+            this.btnCoil1.Text = "Coil1";
+            this.btnCoil1.UseVisualStyleBackColor = true;
             // 
             // btnOff
             // 
@@ -774,7 +845,7 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.Controls.Add(this.label17);
             this.GroupBoxWriteMultiple.Controls.Add(this.label18);
             this.GroupBoxWriteMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 319);
+            this.GroupBoxWriteMultiple.Location = new System.Drawing.Point(472, 322);
             this.GroupBoxWriteMultiple.Name = "GroupBoxWriteMultiple";
             this.GroupBoxWriteMultiple.Size = new System.Drawing.Size(411, 337);
             this.GroupBoxWriteMultiple.TabIndex = 0;
@@ -807,6 +878,63 @@ namespace GUI_ModBus
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Value";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.btncheckCoil4);
+            this.groupBox10.Controls.Add(this.btncheckCoil2);
+            this.groupBox10.Controls.Add(this.btncheckCoil3);
+            this.groupBox10.Controls.Add(this.btncheckCoil1);
+            this.groupBox10.Location = new System.Drawing.Point(6, 44);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(166, 74);
+            this.groupBox10.TabIndex = 3;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Select Coil Number";
+            // 
+            // btncheckCoil4
+            // 
+            this.btncheckCoil4.AutoSize = true;
+            this.btncheckCoil4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncheckCoil4.Location = new System.Drawing.Point(79, 44);
+            this.btncheckCoil4.Name = "btncheckCoil4";
+            this.btncheckCoil4.Size = new System.Drawing.Size(57, 20);
+            this.btncheckCoil4.TabIndex = 0;
+            this.btncheckCoil4.Text = "Coil4";
+            this.btncheckCoil4.UseVisualStyleBackColor = true;
+            // 
+            // btncheckCoil2
+            // 
+            this.btncheckCoil2.AutoSize = true;
+            this.btncheckCoil2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncheckCoil2.Location = new System.Drawing.Point(79, 18);
+            this.btncheckCoil2.Name = "btncheckCoil2";
+            this.btncheckCoil2.Size = new System.Drawing.Size(57, 20);
+            this.btncheckCoil2.TabIndex = 0;
+            this.btncheckCoil2.Text = "Coil2";
+            this.btncheckCoil2.UseVisualStyleBackColor = true;
+            // 
+            // btncheckCoil3
+            // 
+            this.btncheckCoil3.AutoSize = true;
+            this.btncheckCoil3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncheckCoil3.Location = new System.Drawing.Point(12, 44);
+            this.btncheckCoil3.Name = "btncheckCoil3";
+            this.btncheckCoil3.Size = new System.Drawing.Size(57, 20);
+            this.btncheckCoil3.TabIndex = 0;
+            this.btncheckCoil3.Text = "Coil3";
+            this.btncheckCoil3.UseVisualStyleBackColor = true;
+            // 
+            // btncheckCoil1
+            // 
+            this.btncheckCoil1.AutoSize = true;
+            this.btncheckCoil1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncheckCoil1.Location = new System.Drawing.Point(12, 18);
+            this.btncheckCoil1.Name = "btncheckCoil1";
+            this.btncheckCoil1.Size = new System.Drawing.Size(57, 20);
+            this.btncheckCoil1.TabIndex = 0;
+            this.btncheckCoil1.Text = "Coil1";
+            this.btncheckCoil1.UseVisualStyleBackColor = true;
             // 
             // btnMultiOnOff
             // 
@@ -988,117 +1116,67 @@ namespace GUI_ModBus
             this.label18.TabIndex = 0;
             this.label18.Text = "Slave Id :";
             // 
-            // btnCoil1
+            // groupBox11
             // 
-            this.btnCoil1.AutoSize = true;
-            this.btnCoil1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCoil1.Location = new System.Drawing.Point(9, 21);
-            this.btnCoil1.Name = "btnCoil1";
-            this.btnCoil1.Size = new System.Drawing.Size(56, 20);
-            this.btnCoil1.TabIndex = 0;
-            this.btnCoil1.TabStop = true;
-            this.btnCoil1.Text = "Coil1";
-            this.btnCoil1.UseVisualStyleBackColor = true;
+            this.groupBox11.Controls.Add(this.listView4);
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox11.Location = new System.Drawing.Point(9, 21);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(398, 125);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Coil Status";
             // 
-            // btnCoil2
+            // listView4
             // 
-            this.btnCoil2.AutoSize = true;
-            this.btnCoil2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCoil2.Location = new System.Drawing.Point(71, 21);
-            this.btnCoil2.Name = "btnCoil2";
-            this.btnCoil2.Size = new System.Drawing.Size(56, 20);
-            this.btnCoil2.TabIndex = 0;
-            this.btnCoil2.TabStop = true;
-            this.btnCoil2.Text = "Coil2";
-            this.btnCoil2.UseVisualStyleBackColor = true;
+            this.listView4.HideSelection = false;
+            this.listView4.Location = new System.Drawing.Point(11, 21);
+            this.listView4.Name = "listView4";
+            this.listView4.Size = new System.Drawing.Size(381, 98);
+            this.listView4.TabIndex = 0;
+            this.listView4.UseCompatibleStateImageBehavior = false;
+            this.listView4.View = System.Windows.Forms.View.List;
             // 
-            // btnCoil4
+            // groupBoxAutoStatus
             // 
-            this.btnCoil4.AutoSize = true;
-            this.btnCoil4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCoil4.Location = new System.Drawing.Point(71, 48);
-            this.btnCoil4.Name = "btnCoil4";
-            this.btnCoil4.Size = new System.Drawing.Size(56, 20);
-            this.btnCoil4.TabIndex = 0;
-            this.btnCoil4.TabStop = true;
-            this.btnCoil4.Text = "Coil4";
-            this.btnCoil4.UseVisualStyleBackColor = true;
+            this.groupBoxAutoStatus.Controls.Add(this.groupBox13);
+            this.groupBoxAutoStatus.Controls.Add(this.groupBox11);
+            this.groupBoxAutoStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxAutoStatus.Location = new System.Drawing.Point(13, 665);
+            this.groupBoxAutoStatus.Name = "groupBoxAutoStatus";
+            this.groupBoxAutoStatus.Size = new System.Drawing.Size(870, 152);
+            this.groupBoxAutoStatus.TabIndex = 3;
+            this.groupBoxAutoStatus.TabStop = false;
+            this.groupBoxAutoStatus.Text = "Auto Update Coil  and Input Status";
             // 
-            // btnCoil3
+            // groupBox13
             // 
-            this.btnCoil3.AutoSize = true;
-            this.btnCoil3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCoil3.Location = new System.Drawing.Point(9, 47);
-            this.btnCoil3.Name = "btnCoil3";
-            this.btnCoil3.Size = new System.Drawing.Size(56, 20);
-            this.btnCoil3.TabIndex = 0;
-            this.btnCoil3.TabStop = true;
-            this.btnCoil3.Text = "Coil3";
-            this.btnCoil3.UseVisualStyleBackColor = true;
+            this.groupBox13.Controls.Add(this.listView5);
+            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox13.Location = new System.Drawing.Point(422, 21);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(398, 125);
+            this.groupBox13.TabIndex = 2;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Input Status";
             // 
-            // groupBox10
+            // listView5
             // 
-            this.groupBox10.Controls.Add(this.btncheckCoil4);
-            this.groupBox10.Controls.Add(this.btncheckCoil2);
-            this.groupBox10.Controls.Add(this.btncheckCoil3);
-            this.groupBox10.Controls.Add(this.btncheckCoil1);
-            this.groupBox10.Location = new System.Drawing.Point(6, 44);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(166, 74);
-            this.groupBox10.TabIndex = 3;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Select Coil Position";
-            // 
-            // btncheckCoil1
-            // 
-            this.btncheckCoil1.AutoSize = true;
-            this.btncheckCoil1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncheckCoil1.Location = new System.Drawing.Point(12, 18);
-            this.btncheckCoil1.Name = "btncheckCoil1";
-            this.btncheckCoil1.Size = new System.Drawing.Size(57, 20);
-            this.btncheckCoil1.TabIndex = 0;
-            this.btncheckCoil1.Text = "Coil1";
-            this.btncheckCoil1.UseVisualStyleBackColor = true;
-            // 
-            // btncheckCoil2
-            // 
-            this.btncheckCoil2.AutoSize = true;
-            this.btncheckCoil2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncheckCoil2.Location = new System.Drawing.Point(79, 18);
-            this.btncheckCoil2.Name = "btncheckCoil2";
-            this.btncheckCoil2.Size = new System.Drawing.Size(57, 20);
-            this.btncheckCoil2.TabIndex = 0;
-            this.btncheckCoil2.Text = "Coil2";
-            this.btncheckCoil2.UseVisualStyleBackColor = true;
-            // 
-            // btncheckCoil4
-            // 
-            this.btncheckCoil4.AutoSize = true;
-            this.btncheckCoil4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncheckCoil4.Location = new System.Drawing.Point(79, 44);
-            this.btncheckCoil4.Name = "btncheckCoil4";
-            this.btncheckCoil4.Size = new System.Drawing.Size(57, 20);
-            this.btncheckCoil4.TabIndex = 0;
-            this.btncheckCoil4.Text = "Coil4";
-            this.btncheckCoil4.UseVisualStyleBackColor = true;
-            // 
-            // btncheckCoil3
-            // 
-            this.btncheckCoil3.AutoSize = true;
-            this.btncheckCoil3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncheckCoil3.Location = new System.Drawing.Point(12, 44);
-            this.btncheckCoil3.Name = "btncheckCoil3";
-            this.btncheckCoil3.Size = new System.Drawing.Size(57, 20);
-            this.btncheckCoil3.TabIndex = 0;
-            this.btncheckCoil3.Text = "Coil3";
-            this.btncheckCoil3.UseVisualStyleBackColor = true;
+            this.listView5.HideSelection = false;
+            this.listView5.Location = new System.Drawing.Point(11, 21);
+            this.listView5.Name = "listView5";
+            this.listView5.Size = new System.Drawing.Size(381, 98);
+            this.listView5.TabIndex = 0;
+            this.listView5.UseCompatibleStateImageBehavior = false;
+            this.listView5.View = System.Windows.Forms.View.List;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
-            this.ClientSize = new System.Drawing.Size(904, 663);
+            this.ClientSize = new System.Drawing.Size(893, 820);
+            this.Controls.Add(this.groupBoxAutoStatus);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxWriteMultiple);
             this.Controls.Add(this.groupBox4);
@@ -1108,6 +1186,7 @@ namespace GUI_ModBus
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModBus Project Perform Read Write  Operation";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1130,10 +1209,13 @@ namespace GUI_ModBus
             this.GroupBoxWriteMultiple.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBoxAutoStatus.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1225,6 +1307,12 @@ namespace GUI_ModBus
         private System.Windows.Forms.CheckBox btncheckCoil2;
         private System.Windows.Forms.CheckBox btncheckCoil3;
         private System.Windows.Forms.CheckBox btncheckCoil1;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ListView listView4;
+        private System.Windows.Forms.GroupBox groupBoxAutoStatus;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.ListView listView5;
+        private System.Windows.Forms.RadioButton btnTCP;
     }
 }
 

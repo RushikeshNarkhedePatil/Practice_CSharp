@@ -14,10 +14,15 @@ namespace TimerPractice
 {
     public partial class Timer : Form
     {
-        public Timer()
+        public Timer(TimerCallback timerCallback)
         {
             InitializeComponent();
         }
+
+        public Timer()
+        {
+        }
+
         private int count1 = 0;
         private int count2 = 0;
         private int count3 = 0;
