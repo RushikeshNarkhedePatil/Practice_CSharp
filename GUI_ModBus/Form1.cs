@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using Modbus.Device;
-using System.IO;
 using System.Threading;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -548,10 +540,10 @@ namespace GUI_ModBus
                 {
                     OpenConAscii();
                 }
-                else if (btnTCP.Checked == true)
-                {
-                    tcpTest();
-                }
+                //else if (btnTCP.Checked == true)
+                //{
+                //    tcpTest();
+                //}
                 else if(ParityStatus==false)
                 {
                     return;

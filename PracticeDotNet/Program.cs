@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PracticeDotNet
 {
@@ -61,6 +62,14 @@ namespace PracticeDotNet
             Console.WriteLine("\nInside Finalize Demo");
             FinalizeExample fobj = new FinalizeExample();
             fobj.ShowDurartion();
+
+            // Dictinary
+            Dictionary<int, string> pairs = new Dictionary<int, string>();
+            pairs.Add(1, "1"+"2"+ "3" + "4");
+            foreach (var item in pairs)
+            {
+                Console.WriteLine("Key "+item.Key+"Values "+item.Value);
+            }
         }
     }
 }

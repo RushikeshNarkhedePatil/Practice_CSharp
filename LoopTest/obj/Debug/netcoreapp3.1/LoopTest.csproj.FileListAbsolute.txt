@@ -1,0 +1,14 @@
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.exe
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.deps.json
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.runtimeconfig.json
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.runtimeconfig.dev.json
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.dll
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\bin\Debug\netcoreapp3.1\LoopTest.pdb
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.AssemblyInfoInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.AssemblyInfo.cs
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.dll
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.pdb
+C:\Users\varad\source\repos\PracticeDotNet\LoopTest\obj\Debug\netcoreapp3.1\LoopTest.genruntimeconfig.cache

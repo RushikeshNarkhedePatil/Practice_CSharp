@@ -1,0 +1,10 @@
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\bin\Debug\Calculatoer.exe.config
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\bin\Debug\Calculatoer.exe
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\bin\Debug\Calculatoer.pdb
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.Form1.resources
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.Properties.Resources.resources
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.csproj.GenerateResource.cache
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.exe
+C:\Users\varad\source\repos\PracticeDotNet\Calculatoer\obj\Debug\Calculatoer.pdb
