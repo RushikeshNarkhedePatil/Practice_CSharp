@@ -25,36 +25,36 @@ namespace Calculatoer
 
         public void StoreDataBits()
         {
-            //UInt32 base1 = 2;
-            //UInt32 result = 0;
-            //void FindPower(UInt32 Data)
-            //{
-            //    if(Data==0)
-            //    {
-            //        result = 1;
-            //    }
-            //    else
-            //    {
-            //        result = Data * base1;
-            //    }
+            UInt32 base1 = 2;
+            UInt32 result = 0;
+            void FindPower(UInt32 Data)
+            {
+                if (Data == 0)
+                {
+                    result = 1;
+                }
+                else
+                {
+                    result = result * base1;
+                }
 
-        
-            //    DicStoreDataBits.Add(Data, result);
 
-            //}
+                DicStoreDataBits.Add(Data, result);
 
-            //for (UInt32 i = 0; i < 32; i++)
-            //{
-            //    FindPower(i);
-            //}
-            DicStoreDataBits.Add(0, 1);
-            DicStoreDataBits.Add(1, 2);
-            DicStoreDataBits.Add(2, 4);
-            DicStoreDataBits.Add(3, 8);
-            DicStoreDataBits.Add(4, 16);
-            DicStoreDataBits.Add(5, 32);
-            DicStoreDataBits.Add(6, 64);
-            DicStoreDataBits.Add(7, 128);
+            }
+
+            for (UInt32 i = 0; i < 32; i++)
+            {
+                FindPower(i);
+            }
+            //DicStoreDataBits.Add(0, 1);
+            //DicStoreDataBits.Add(1, 2);
+            //DicStoreDataBits.Add(2, 4);
+            //DicStoreDataBits.Add(3, 8);
+            //DicStoreDataBits.Add(4, 16);
+            //DicStoreDataBits.Add(5, 32);
+            //DicStoreDataBits.Add(6, 64);
+            //DicStoreDataBits.Add(7, 128);
         }
 
         //private ObservableCollection<DecimalValue> resultDecimal;
@@ -532,6 +532,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Four;
+                DecimalResult = DecimalResult - DicStoreDataBits[4];
                 lblbit4.Text = OffBit;
             }
            
@@ -549,6 +550,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Five;
+                DecimalResult = DecimalResult - DicStoreDataBits[5];
                 lblbit5.Text = OffBit;
             }
             
@@ -566,6 +568,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Six;
+                DecimalResult = DecimalResult - DicStoreDataBits[6];
                 lblbit6.Text = OffBit;
             }
             
@@ -583,6 +586,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Seven;
+                DecimalResult = DecimalResult - DicStoreDataBits[7];
                 lblbit7.Text = OffBit;
             }
             
@@ -600,6 +604,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Eight;
+                DecimalResult = DecimalResult - DicStoreDataBits[8];
                 lblbit8.Text = OffBit;
             }
         }
@@ -616,6 +621,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Nine;
+                DecimalResult = DecimalResult - DicStoreDataBits[9];
                 lblbit9.Text = OffBit;
             }
         }
@@ -632,6 +638,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Ten;
+                DecimalResult = DecimalResult - DicStoreDataBits[10];
                 lblbit10.Text = OffBit;
             }
         }
@@ -648,6 +655,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Eleven;
+                DecimalResult = DecimalResult - DicStoreDataBits[11];
                 lblbit11.Text = OffBit;
             }
         }
@@ -664,6 +672,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twelve;
+                DecimalResult = DecimalResult - DicStoreDataBits[12];
                 lblbit12.Text = OffBit;
             }
         }
@@ -680,6 +689,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Thirteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[13];
                 lblbit13.Text = OffBit;
             }
         }
@@ -696,6 +706,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Fourteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[14];
                 lblbit14.Text = OffBit;
             }
         }
@@ -712,6 +723,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Fifteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[15];
                 lblbit15.Text = OffBit;
             }
         }
@@ -728,6 +740,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Sixteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[16];
                 lblbit16.Text = OffBit;
             }
         }
@@ -744,6 +757,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Seventeen;
+                DecimalResult = DecimalResult - DicStoreDataBits[17];
                 lblbit17.Text = OffBit;
             }
         }
@@ -760,6 +774,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Eighteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[18];
                 lblbit18.Text = OffBit;
             }
         }
@@ -776,6 +791,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Nineteen;
+                DecimalResult = DecimalResult - DicStoreDataBits[19];
                 lblbit19.Text = OffBit;
             }
         }
@@ -792,6 +808,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty;
+                DecimalResult = DecimalResult - DicStoreDataBits[20];
                 lblbit20.Text = OffBit;
             }
         }
@@ -808,6 +825,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_One;
+                DecimalResult = DecimalResult - DicStoreDataBits[21];
                 lblbit21.Text = OffBit;
             }
         }
@@ -824,6 +842,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Two;
+                DecimalResult = DecimalResult - DicStoreDataBits[22];
                 lblbit22.Text = OffBit;
             }
         }
@@ -840,6 +859,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Three;
+                DecimalResult = DecimalResult - DicStoreDataBits[23];
                 lblbit23.Text = OffBit;
             }
         }
@@ -856,6 +876,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Four;
+                DecimalResult = DecimalResult - DicStoreDataBits[24];
                 lblbit24.Text = OffBit;
             }
         }
@@ -872,6 +893,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Five;
+                DecimalResult = DecimalResult - DicStoreDataBits[25];
                 lblbit25.Text = OffBit;
             }
         }
@@ -888,6 +910,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Six;
+                DecimalResult = DecimalResult - DicStoreDataBits[26];
                 lblbit26.Text = OffBit;
             }
         }
@@ -904,6 +927,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Seven;
+                DecimalResult = DecimalResult - DicStoreDataBits[27];
                 lblbit27.Text = OffBit;
             }
         }
@@ -920,6 +944,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Eight;
+                DecimalResult = DecimalResult - DicStoreDataBits[28];
                 lblbit28.Text = OffBit;
             }
         }
@@ -936,6 +961,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Twenty_Nine;
+                DecimalResult = DecimalResult - DicStoreDataBits[29];
                 lblbit29.Text = OffBit;
             }
         }
@@ -952,6 +978,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Thirty;
+                DecimalResult = DecimalResult - DicStoreDataBits[30];
                 lblbit30.Text = OffBit;
             }
         }
@@ -968,6 +995,7 @@ namespace Calculatoer
             {
                 Status = false;
                 BitsName = Bit.Thirty_One;
+                DecimalResult = DecimalResult - DicStoreDataBits[31];
                 lblbit31.Text = OffBit;
             }
         }
