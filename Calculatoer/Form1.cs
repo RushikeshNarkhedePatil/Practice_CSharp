@@ -101,6 +101,8 @@ namespace Calculatoer
         private bool Status= false;
         private Bit BitsName;
         private  static UInt32 DecimalResult = 0;
+        private static UInt32 OctalResult = 0;
+
         private int Count = 0;
         #endregion EndField
 
@@ -443,6 +445,20 @@ namespace Calculatoer
             }
             
             txtAnswer.Text = DecimalResult.ToString();
+            ConvertToOctal(DecimalResult);      // Call to Octal
+        }
+        // Octal number try
+        private void ConvertToOctal(UInt32 Result)
+        {
+            UInt32 reminder = 0;
+            OctalResult = 0;
+            while (Result!=0)
+            {
+                reminder = Result % 8;
+                OctalResult = OctalResult + reminder;
+                Result = Result / 8;
+            }
+            //MessageBox.Show(OctalResult.ToString());
         }
 
         private void lblbit0_Click(object sender, EventArgs e)
