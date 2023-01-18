@@ -20,6 +20,7 @@ namespace Calculatoer
             txtAnswer.Text = "0";
             //StoreBitsData = new UInt32[32];
             BitsData = new UInt32[32];
+            OctalStore = new UInt32[32];
             StoreDataBits();
         }
 
@@ -104,6 +105,7 @@ namespace Calculatoer
         private static UInt32 OctalResult = 0;
 
         private int Count = 0;
+        private UInt32[] OctalStore;
         #endregion EndField
 
 
@@ -451,12 +453,21 @@ namespace Calculatoer
         private void ConvertToOctal(UInt32 Result)
         {
             UInt32 reminder = 0;
+            UInt32[] FinalOctal;
             OctalResult = 0;
             while (Result!=0)
             {
                 reminder = Result % 8;
-                OctalResult = OctalResult + reminder;
+                //OctalResult = OctalResult + reminder;
+                OctalStore[0] = reminder;
                 Result = Result / 8;
+            }
+            for(int i=32;i>=0;i--)
+            {
+                if(OctalStore[i]!=0)
+                {
+
+                }
             }
             //MessageBox.Show(OctalResult.ToString());
         }
