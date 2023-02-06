@@ -1,0 +1,16 @@
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.csproj.AssemblyReference.cache
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.Form1.resources
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.Properties.Resources.resources
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.csproj.GenerateResource.cache
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.csproj.CoreCompileInputs.cache
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\HalconDemo.exe.config
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\HalconDemo.exe
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\HalconDemo.pdb
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\halcondotnet.dll
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\halcondotnetxl.dll
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\hdevenginedotnetxl.dll
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\halcondotnetxl.xml
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\bin\Debug\hdevenginedotnetxl.xml
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.csproj.CopyComplete
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.exe
+C:\Users\varad\source\repos\PracticeDotNet\HalconDemo\obj\Debug\HalconDemo.pdb
