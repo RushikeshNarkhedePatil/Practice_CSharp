@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj": {}
+    "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj": {
+    "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj",
+        "projectUniqueName": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj",
         "projectName": "WPFMVVM",
-        "projectPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj",
-        "packagesPath": "C:\\Users\\varad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\WPFMVVM\\obj\\",
+        "projectPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\WPFMVVM\\WPFMVVM.csproj",
+        "packagesPath": "C:\\Users\\Rushikesh.N\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\WPFMVVM\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\varad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rushikesh.N\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

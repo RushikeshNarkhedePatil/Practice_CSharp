@@ -484,19 +484,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\varad\\.nuget\\packages\\": {}
+    "C:\\Users\\Rushikesh.N\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\NModBusDemo\\NModBusDemo.csproj",
+      "projectUniqueName": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\NModBusDemo\\NModBusDemo.csproj",
       "projectName": "NModBusDemo",
-      "projectPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\NModBusDemo\\NModBusDemo.csproj",
-      "packagesPath": "C:\\Users\\varad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\NModBusDemo\\obj\\",
+      "projectPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\NModBusDemo\\NModBusDemo.csproj",
+      "packagesPath": "C:\\Users\\Rushikesh.N\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\NModBusDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\varad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rushikesh.N\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

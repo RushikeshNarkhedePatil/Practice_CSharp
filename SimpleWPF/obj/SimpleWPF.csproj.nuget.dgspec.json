@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj": {}
+    "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj": {
+    "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj",
+        "projectUniqueName": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj",
         "projectName": "SimpleWPF",
-        "projectPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj",
-        "packagesPath": "C:\\Users\\varad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\SimpleWPF\\obj\\",
+        "projectPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\SimpleWPF\\SimpleWPF.csproj",
+        "packagesPath": "C:\\Users\\Rushikesh.N\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\SimpleWPF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\varad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rushikesh.N\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

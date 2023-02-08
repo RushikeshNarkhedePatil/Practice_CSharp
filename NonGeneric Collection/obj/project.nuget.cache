@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "XCpsUiWJYbR/Zija9GBuRT6OseJiPspOVgyoXiVN0iyqiOwcznixpaX9NNXWzA5gQI9eGbGL5a57eJzv9uAWnA==",
+  "dgSpecHash": "KDkbMOufMSOPu3qPrTxsgrtfhrpdx7gFypsmFwOWnRPsRVpdgY4g7bG7vwhNDEKLy2mjvKjhdzKqMLu2A3uewA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\varad\\source\\repos\\PracticeDotNet\\NonGeneric Collection\\NonGeneric Collection.csproj",
+  "projectFilePath": "C:\\Users\\Rushikesh.N\\source\\repos\\PracticeDotNet\\NonGeneric Collection\\NonGeneric Collection.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\varad\\.nuget\\packages\\nmodbus\\3.0.72\\nmodbus.3.0.72.nupkg.sha512"
+    "C:\\Users\\Rushikesh.N\\.nuget\\packages\\nmodbus\\3.0.72\\nmodbus.3.0.72.nupkg.sha512"
   ],
   "logs": []
 }
